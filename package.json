@@ -1,0 +1,29 @@
+{
+  "name": "kegparty",
+  "version": "1.0.0",
+  "description": "Craft beer curation web app",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.14.1",
+    "nodemon": "^1.11.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tj-Tracy/KegParty.git"
+  },
+  "keywords": [
+    "Craft",
+    "Beer",
+    "Curation"
+  ],
+  "author": "",
+  "license": "(MIT)",
+  "bugs": {
+    "url": "https://github.com/Tj-Tracy/KegParty/issues"
+  },
+  "homepage": "https://github.com/Tj-Tracy/KegParty#readme"
+}
