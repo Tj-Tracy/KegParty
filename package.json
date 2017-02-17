@@ -4,10 +4,19 @@
   "description": "Craft beer curation web app",
   "main": "index.js",
   "dependencies": {
+    "axios": "^0.15.3",
+    "ejs": "^2.5.6",
     "express": "^4.14.1",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "request": "^2.79.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^3.15.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.0"
+  },
   "scripts": {
     "test": "nodemon index.js"
   },
