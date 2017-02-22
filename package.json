@@ -18,7 +18,7 @@
     "eslint-plugin-react": "^6.10.0"
   },
   "scripts": {
-    "start": "node app.js"
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -29,7 +29,7 @@
     "Beer",
     "Curation"
   ],
-  "author": "",
+  "author": "Thomas Tracy",
   "license": "(MIT)",
   "bugs": {
     "url": "https://github.com/Tj-Tracy/KegParty/issues"

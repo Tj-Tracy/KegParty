@@ -1,6 +1,6 @@
 
 module.exports = {
-  beer:class Beer {
+  Beer: class Beer {
 
     constructor(name, description, id) {
       this.name = name;

@@ -7,13 +7,12 @@ const axios = require('axios');
 const brewAPI = 'key=72220654c478e056063a0d4757578df4';
 
 
-//home path
 router.get('/:beerid', (req, res) => {
-  //res.render("beer_info");
   console.log(req.params.beerid);
   axios.get(`http://api.brewerydb.com/v2/beer/${req.params.beerid}?${brewAPI}`)
   .then((response) => {
-    res.send(response.data);
+    const beer = response.data;
+    res.render('beerInfo', { beer });
   }).catch((error) => {
     res.send(error);
   });
