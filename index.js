@@ -4,7 +4,7 @@ const app = express();
 
 const axios = require('axios');
 
-const brewAPI = '&key=72220654c478e056063a0d4757578df4';
+const brewAPI = 'key=72220654c478e056063a0d4757578df4';
 
 app.set('view engine', 'ejs');
 
@@ -17,13 +17,13 @@ class Beer {
   }
 }
 
-const beerList = [];
-
 function populateBeerList(searchData) {
+  const beerList = [];
   searchData.data.forEach((beer) => {
     const x = new Beer(beer.name, beer.description, beer.id);
-    beerList.push(x);
+    beerList.push(x); 
   });
+  return beerList;
 }
 
 app.get('/', (req, res) => {
@@ -32,18 +32,30 @@ app.get('/', (req, res) => {
 });
 
 app.get('/beers/:beerid', (req, res) => {
-  console.log(res.params.beerid);
+  //res.render("beer_info");
+  console.log(req.params.beerid);
+  axios.get(`http://api.brewerydb.com/v2/beer/${req.params.beerid}?${brewAPI}`)
+  .then((response) => {
+    res.send(response.data);
+  }).catch((error) => {
+    res.send(error);
+  });
 });
 
-app.get('/search?q', (req, res) => {
-  axios.get(`http://api.brewerydb.com/v2/search?q=${req.query.searchText}&${brewAPI}`)
+app.get('/search', (req, res) => {
+  
+  
+  const searchQuery = req.query.searchText;
+  axios.get(`http://api.brewerydb.com/v2/search?q=${searchQuery}&${brewAPI}`)
   .then((response) => {
-    populateBeerList(response.data);
-    res.render('index', { beerList });
+    beerList = populateBeerList(response.data);
+    res.render("search_results", {beerList});
   })
   .catch((error) => {
     console.log(error);
   });
+  
+
 });
 
 

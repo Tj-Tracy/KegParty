@@ -4,9 +4,8 @@
 </head>
 <body>
    <% beerList.forEach((item) => { %>
-    <p><%= item.name %></p>
+    <a href="/beers/<%= item.id %>"><%= item.name %></a>
     <p><%= item.description %></p>
-    <a href="/beers/<%= item.id %>"><%= item.id %></a>
    <% }) %>
     
 </body>
