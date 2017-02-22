@@ -18,7 +18,7 @@
     "eslint-plugin-react": "^6.10.0"
   },
   "scripts": {
-    "test": "nodemon index.js"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
