@@ -27,7 +27,16 @@ function populateBeerList(searchData) {
 }
 
 app.get('/', (req, res) => {
-  axios.get(`http://api.brewerydb.com/v2/search?q=coors${brewAPI}`)
+  res.render('index');
+  
+});
+
+app.get('/beers/:beerid', (req, res) => {
+  console.log(res.params.beerid);
+});
+
+app.get('/search?q', (req, res) => {
+  axios.get(`http://api.brewerydb.com/v2/search?q=${req.query.searchText}&${brewAPI}`)
   .then((response) => {
     populateBeerList(response.data);
     res.render('index', { beerList });
@@ -36,10 +45,6 @@ app.get('/', (req, res) => {
     console.log(error);
   });
 });
-
-app.get('/beers/:beerid', (req, res) => {
-  console.log(res.params.beerid);
-})
 
 
 app.listen('3000', () => {
