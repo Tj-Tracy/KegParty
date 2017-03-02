@@ -9,4 +9,16 @@ h1 {
     color: sandybrown;
 }
 
+.center {
+    margin: 0 auto;
+    width: 50%;
+}
 
+.fourohfour {
+    color: sandybrown;
+    text-align: center;
+}
+
+.fourohfour p {
+    color: black;
+}

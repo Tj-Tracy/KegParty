@@ -1,16 +1,18 @@
 <!doctype html>
 <head>
-    
+    <title>KegParty - Search Results</title>
 </head>
 <body>
-    
-    <% for(let i=0; i < beerList.length; i++){ %>
-        <a href='/beers/<%= beerList[i].id %>'><%= beerList[i].name %></a>
-        <% if(beerList[i].description != undefined){ %>
-            <p><%= beerList[i].description %></p>
-        <% } else { %>
-            <p>(No Description)</p>
+    <% if(beerList !== undefined){ %>
+        <% for(let i=0; i < beerList.length; i++){ %>
+            <a href='/beers/<%= beerList[i].id %>'><%= beerList[i].name %></a>
+            <% if(beerList[i].description != undefined){ %>
+                <p><%= beerList[i].description %></p>
+            <% } else { %>
+                <p>(No Description)</p>
+            <% } %>
         <% } %>
-    <% } %>
-    
+    <% } else {%>
+        <p>No Search Results</p>
+    <%}%>
 </body>
