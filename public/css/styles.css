@@ -8,5 +8,21 @@ h1 {
     text-align: center;
     color: sandybrown;
 }
-
+#canvas {
+    height: 100%;
+    width: 100%;
+    background-color: #E0D01B;
+}
+#login {
+    position: absolute;
+    top: 43%;
+    right: 46%;
+    
+}
+#search {
+    position: absolute;
+    top: 43%;
+    right: 46%;
+    
+}
 
