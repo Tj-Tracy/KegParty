@@ -5,13 +5,13 @@ const User = require('../models/User');
 const loginController = require('../controllers/login_controller');
 const signupController = require('../controllers/signup_controller');
 
+
 Passport.use(new Strategy(User.authenticate()));
 Passport.serializeUser(User.serializeUser());
 Passport.deserializeUser(User.deserializeUser());
 
 const router = express.Router();
-router.use(Passport.initialize());
-router.use(Passport.session());
+
 
 const err = '';
 router.get('/login', (req, res) => res.render('login', { err }));

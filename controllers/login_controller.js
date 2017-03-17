@@ -1,7 +1,11 @@
 const Passport = require('passport');
+const User = require('../models/User');
+
 
 
 const loginAuth = {
+
+  // log in the user 
   loginUser: (req, res, next) => {
     Passport.authenticate('local', (err, user) => {
       if (err) {
@@ -21,14 +25,23 @@ const loginAuth = {
     })(req, res, next);
   },
 
+  //show the profile or account page depending on if the user is logged in or not
   showProfile: (req, res) => {
     // how to check if there is a user logged in: req.isAuthenticated()
     console.log(req.isAuthenticated());
-    const user = 'aaaa';
     if (req.isAuthenticated()) {
-      res.render('profile', { user });
+      const user = req.user.username;
+      res.render('account_page', { user });
     } else {
-      res.render('index');
+      const user = req.params.userid;
+      //if the user exists in the database take them to your page
+      User.count({username: user}, function (err, count){ 
+        if(count>0){
+          res.render('profile', { user });
+        } else {
+          res.render("404");
+        }
+      }); 
     }
   },
 
