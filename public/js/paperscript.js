@@ -1,6 +1,17 @@
 
 /* Global Variables */
 
+
+var colorPhraseKey = [
+	['Error', 'NULL'],
+	['Cold', '#5BCEF5'],
+	['Hot', '#E84141'],
+	['Tired', '#651680'],
+	['Beach', '#E5F250'],
+	['Party', '#F52FF1'],
+	['Smashed', '#F2701F']
+];
+console.log(colorPhraseKey[1][0]);
 var canvas = document.getElementById('canvas');
 console.log(canvas.width); // 300
 var canvasHeight = canvas.height;
@@ -174,7 +185,7 @@ function drawOutline(center,group){
 
 	var outline = new Path.Circle({
 	center: view.center,
-	radius: startRadius * 1.095,
+	radius: startRadius * 1.1,
 	fillColor: 'white',
 	strokeWidth: 3,
 	strokeColor: 'black'
@@ -186,7 +197,7 @@ function setUpLoginGroup(){
 	loginGroup.onClick = function(event){
 		$('#search').hide();
 		if(!loginClicked){
-			/* Enlarge loginGroup */
+			
 			this.animate({
       			properties: {
           			scale:3,
@@ -197,7 +208,7 @@ function setUpLoginGroup(){
           			duration: 500,
           			easing: "swing"
       			}});
-			/*Move helpGroup */	  
+			
 			helpGroup.animate({
       			properties: {
           			position: { x: canvasWidth/ 6, y: canvasHeight - canvasHeight/ 4},
@@ -366,13 +377,8 @@ function setUpSearchGroup(){
 				  $('#search').hide();
 				  searchClicked = false;
 				  loginGroup.children[26].visible = true;
-				  
 				  searchGroup.children[26].visible = true;
 		}
-
-		
-	
-		
 	}
 }
 function setUpHelpGroup(){
@@ -393,29 +399,9 @@ function setUpHelpGroup(){
           			easing: "swing"
       			}});
 			/*Move helpGroup */	  
-			loginGroup.animate({
-      			properties: {
-          			position: { x: canvasWidth/ 8, y: canvasHeight - canvasHeight/ 4},
-					scale: 1,
-					rotate: 12
-					
-      			},
-      			settings: {
-          			duration: 500,
-          			easing: "swing"
-      			}});
+			loginGroup.position = new Point(canvasWidth * 2, 0);
 			/* move searchGroup */
-			searchGroup.animate({
-      			properties: {
-          			position: { x: canvasWidth- canvasWidth/6, y: canvasHeight - canvasHeight/ 4},
-					scale: 1,
-					rotate: 12
-					
-      			},
-      			settings: {
-          			duration: 500,
-          			easing: "swing"
-      			}});
+			searchGroup.position = new Point(canvasWidth * 2, 0);
 			searchGroup.children[26].visible = true;
 			loginGroup.children[26].visible = true;
 
@@ -467,33 +453,70 @@ function setUpHelpGroup(){
 				  loginGroup.children[26].visible = true;
 				  
 				  searchGroup.children[26].visible = true;
-		}
-
-		
-	
-		
+		}		
 	}
 }
 function drawHelpGroupChildren(){
-	var start_x =  2 * canvasWidth/ 8;
-	var start_y =  canvasHeight / 20;
-	var offset_x = canvasWidth / 10;
-	var offset_y = canvasHeight / 5;
-	var count_x;
-	var count_y;
-
-	for(count_x = 0; count_x < (6 * offset_x); count_x += 1.66 * offset_x){
-		for(count_y = offset_y; count_y <= (3* offset_y); count_y += offset_y){
-			var bubble = new Path.Circle({
-				center: view.center,
-				radius: startRadius * .66,
-				fillColor: 'red',
-				strokeWidth: 1,
-				strokeColor: 'black'
-			});
-			bubble.position= new Point(start_x + count_x, start_y + count_y);
-		}
+	var numChildren = 4;
+	var childGroup = new Group();
+	//await sleep(500);
+	for(var i=1; i < numChildren;i++){
+		drawChild(childGroup, new Point(canvasWidth / 6 + i*(canvasWidth/5), canvasHeight / 5), colorPhraseKey[i][0], colorPhraseKey[i][1]);
 	}
+	
+	for(var j=1; j < numChildren - 1;i++){
+		drawChild(childGroup, new Point(canvasWidth / 6 + j*(canvasWidth/5), canvasHeight / 2), colorPhraseKey[i][0], colorPhraseKey[i][1]);
+		j++;
+	}
+	drawChild(childGroup, new Point(canvasWidth / 6 + j*(canvasWidth/5), canvasHeight / 2), 'More', '#F7E254');
+	
+	//drawChild(childGroup, new Point(canvasWidth /2 , canvasHeight /2), "go fuck youself", 'grey');
+
+	
+}
+function drawChild(group, position, phrase,color){
+	drawOutline(position,group);
+	drawEdges(position,group);
+	var childBubble = new Path.Circle({
+	center: view.center,
+	radius: startRadius,
+	fillColor: 'white',
+	strokeWidth: 1,
+	strokeColor: 'black'
+	});
+	childBubble.position = position;
+	group.addChild(childBubble);
+	
+	drawChildArc(position, group, color);
+	drawLogoName(position, group, phrase);
+}
+function drawChildArc(center, group, color){
+	var Radius = startRadius;
+	var x;
+	var y;
+
+	
+	var logoArc = new Path.Circle({
+	center: view.center,
+	radius: Radius * .87,
+	fillColor: color
+	
+	});
+	logoArc.position = center;
+
+	console.log(center.x + 'x');
+	console.log(center.y + 'y');
+
+
+	var logoRect = new Path.Rectangle(center.x - Radius * .88, center.y - Radius * .3, Radius * 1.76,  Radius * .6);
+
+	console.log(center.x + Radius * 85 + 'x');
+	console.log( center.y + Radius * .2 +'y');
+	logoRect.fillColor = 'white';
+	logoRect.rotate	(-12);
+	group.addChild(logoArc);
+	group.addChild(logoRect);
+	
 }
 function cleanUpHelpGroupChildren(){
 
