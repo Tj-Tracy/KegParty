@@ -3,7 +3,6 @@
 
 
 var colorPhraseKey = [
-	['Error', 'NULL'],
 	['Cold', '#5BCEF5'],
 	['Hot', '#E84141'],
 	['Tired', '#651680'],
@@ -31,6 +30,8 @@ var searchClicked = false;
 var helpGroupChildren = new Group();
 /*Defines */
 startRadius= canvasWidth / 18;
+
+var recomendationText =  new PointText();
 
 
 
@@ -458,22 +459,60 @@ function setUpHelpGroup(){
 }
 function drawHelpGroupChildren(){
 	var numChildren = 4;
+	var childArray = [];
+
 	var childGroup = new Group();
+	 
 	//await sleep(500);
-	for(var i=1; i < numChildren;i++){
-		drawChild(childGroup, new Point(canvasWidth / 6 + i*(canvasWidth/5), canvasHeight / 5), colorPhraseKey[i][0], colorPhraseKey[i][1]);
+	for(var i=0; i < numChildren - 1;i++){
+		drawChild(childGroup, new Point(canvasWidth / 6 + (i+1)*(canvasWidth/5), canvasHeight / 5), colorPhraseKey[i][0], colorPhraseKey[i][1]);
+		childArray[i] = childGroup;
+		childGroup = new Group();
 	}
 	
-	for(var j=1; j < numChildren - 1;i++){
-		drawChild(childGroup, new Point(canvasWidth / 6 + j*(canvasWidth/5), canvasHeight / 2), colorPhraseKey[i][0], colorPhraseKey[i][1]);
+	for(var j=0; j < numChildren - 2;i++){
+		drawChild(childGroup, new Point(canvasWidth / 6 + (j+1)*(canvasWidth/5), canvasHeight / 2), colorPhraseKey[i][0], colorPhraseKey[i][1]);
+		childArray[i] = childGroup;
+		childGroup = new Group();
 		j++;
 	}
-	drawChild(childGroup, new Point(canvasWidth / 6 + j*(canvasWidth/5), canvasHeight / 2), 'More', '#F7E254');
+	drawChild(childGroup, new Point(canvasWidth / 6 + (j+1)*(canvasWidth/5), canvasHeight / 2), 'More', '#F7E254 ');
+	//childArray[i+1] = childGroup;
 	
-	//drawChild(childGroup, new Point(canvasWidth /2 , canvasHeight /2), "go fuck youself", 'grey');
-
+	for(var i=0; i < childArray.length; i++) {
+		
+		setUpChild(childArray[i]);
+	}
 	
 }
+function setUpChild(child){
+
+	child.onClick = function(event){
+
+		this.animate({
+      			properties: {
+					rotate: '+360',
+      			},
+      			settings: {
+          			duration: 500,
+          			easing: "swing"
+      			}});
+			
+			
+				recomendationText.justification = 'center';
+				recomendationText.fillColor = 'black';
+
+				recomendationText.style = {
+					fontFamily: 'Verdana',
+					fontWeight: 'bold',
+					fontSize: 30,
+					fillColor: 'black',
+					justification: 'center'
+				};
+				recomendationText.content = "Feeling " + child.children[26].content + " We Recomend:";
+				recomendationText.position=  new Point((canvasWidth / 6), canvasHeight - canvasHeight / 3);
+			}
+		}
 function drawChild(group, position, phrase,color){
 	drawOutline(position,group);
 	drawEdges(position,group);
