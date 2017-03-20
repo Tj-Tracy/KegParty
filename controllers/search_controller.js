@@ -9,7 +9,6 @@ const searchResults = {
     axios.get(`http://api.brewerydb.com/v2/search?q=${searchQuery}&type=beer&key=${API_KEY}`)
     .then((response) => {
       const beerList = response.data.data;
-      console.log(beerList);
       return res.render('searchResults', { beerList });
     })
     .catch((error) => {
