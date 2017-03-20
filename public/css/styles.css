@@ -22,3 +22,27 @@ h1 {
 .fourohfour p {
     color: black;
 }
+
+.fake-nav {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding-bottom: 5px;
+}
+
+.login-nav {
+    padding: 10px;
+}
+
+.fake-nav-vert {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+#canvas {
+    height: 100%;
+    width: 100%;
+}

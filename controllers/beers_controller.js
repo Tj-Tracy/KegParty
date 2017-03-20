@@ -8,7 +8,8 @@ const beerInfo = {
     axios.get(`http://api.brewerydb.com/v2/beer/${req.params.beerid}?key=${API_KEY}`)
   .then((response) => {
     const beer = response.data;
-    return res.render('beerInfo', { beer });
+    const loggedInUser = req.isAuthenticated();
+    return res.render('beerInfo', { beer, loggedInUser });
   }).catch((error) => {
     res.send(error);
   });
