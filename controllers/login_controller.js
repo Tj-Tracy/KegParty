@@ -27,26 +27,23 @@ const loginAuth = {
   },
 
   //show the profile or account page depending on if the user is logged in or not
-  showProfile: (req, res) => {
+  showProfile: async (req, res) => {
     // how to check if there is a user logged in: req.isAuthenticated()
     console.log(req.isAuthenticated());
 
     //if the user is authenticated, bring them to thier account page
     if (req.isAuthenticated()) {
       const user = req.user;
-      Favorite.find({ _user: req.user._id})
-      .lean()
-      .exec((err, doc) => {
-        res.render('account_page', { user, favorites: doc });
-      });
+      const favs = await Favorite.find({ _user: req.user._id });
+      return res.render('account_page', { user, favorites: favs });
     } else {
       const user = req.params.userid;
       //if the user exists in the database take them to your page
       User.count({username: user}, function (err, count){ 
-        if(count>0){
+        if (count > 0) {
           res.render('profile', { user });
         } else {
-          res.render("404");
+          res.render('404');
         }
       }); 
     }
