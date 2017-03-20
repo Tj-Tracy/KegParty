@@ -1,5 +1,6 @@
 const Passport = require('passport');
 const User = require('../models/User');
+const Favorite = require ('../models/Favorite');
 
 
 
@@ -29,9 +30,15 @@ const loginAuth = {
   showProfile: (req, res) => {
     // how to check if there is a user logged in: req.isAuthenticated()
     console.log(req.isAuthenticated());
+
+    //if the user is authenticated, bring them to thier account page
     if (req.isAuthenticated()) {
-      const user = req.user.username;
-      res.render('account_page', { user });
+      const user = req.user;
+      Favorite.find({ _user: req.user._id})
+      .lean()
+      .exec((err, doc) => {
+        res.render('account_page', { user, favorites: doc });
+      });
     } else {
       const user = req.params.userid;
       //if the user exists in the database take them to your page
@@ -44,6 +51,20 @@ const loginAuth = {
       }); 
     }
   },
+
+  //add a beer to the users favorites
+  addFavorite: (req, res) => {
+    const favorite = new Favorite;
+    favorite._user = req.user._id;
+    favorite.beerName = req.body.beerName;
+    favorite.beerID = req.body.beerID;
+
+    favorite.save((err) => {
+        req.user.favorites.push(favorite);
+        req.user.save();
+    });
+    return res.redirect(`/beers/${req.body.beerID}`);
+  }
 
 };
 

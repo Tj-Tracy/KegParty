@@ -6,6 +6,15 @@
   <title>Kegparty: Profile</title>
 </head>
 <body>
-  <h1>hi <%= user %></h1>
+  <h1>hi <%= user.username %></h1>
+  <h2>Here are your current Favorites:</h2>
+  <ul>
+   <% for(let i=0; i < favorites.length; i++){ %>
+      <li>
+        <a href="/beers/<%= favorites[i].beerID %>"><%= favorites[i].beerName %></a>
+      </li>
+  <% } %>
+ </ul>
+ <a href="/">Home</a>
 </body>
 </html>

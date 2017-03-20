@@ -19,6 +19,7 @@ router.post('/login', loginController.loginUser);
 router.get('/signup', (req, res) => res.render('signup', { err }));
 router.post('/signup', signupController.signup);
 router.get('/:userid', loginController.showProfile);
+router.post('/addToFavorites', loginController.addFavorite);
 
 
 module.exports = router;

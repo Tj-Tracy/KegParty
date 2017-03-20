@@ -4,4 +4,12 @@
 </head>
 <body>
     <h3><%= beer.data.name %></h3>
+    <% if(loggedInUser) {%>
+        <form action="/users/addToFavorites" method="post" target="uploader_iframe"> 
+            <input type="hidden" name="beerName" value="<%= beer.data.name %>" />
+            <input type="hidden" name="beerID" value="<%= beer.data.id %>" />
+            <input type="submit" value="Add To Favorites" />
+        </form>    
+        <iframe id="uploader_iframe" name="uploader_iframe" style="display: none;"></iframe>
+    <% } %>
 </body>
