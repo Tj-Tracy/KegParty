@@ -8,6 +8,7 @@ h1 {
     text-align: center;
     color: sandybrown;
 }
+
 #canvas {
     height: 100%;
     width: 100%;
@@ -23,6 +24,38 @@ h1 {
     position: absolute;
     top: 43%;
     right: 46%;
-    
+
+
+.center {
+    margin: 0 auto;
+    width: 50%;
 }
 
+.fourohfour {
+    color: sandybrown;
+    text-align: center;
+}
+
+.fourohfour p {
+    color: black;
+}
+
+.fake-nav {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding-bottom: 5px;
+}
+
+.login-nav {
+    padding: 10px;
+}
+
+.fake-nav-vert {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+
+    
+}

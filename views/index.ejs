@@ -1,14 +1,23 @@
 <!doctype html>
 <head>
     <link href="/css/styles.css" rel="stylesheet" ></link>
+    <title>KegParty</title>
 </head>
 <body>
     <h1>Keg Party</h1>
-    <div align="center">
+    <div class="fake-nav">
         <form method="get" action="/search" class="form-wrapper cf" >
             <input type="text" name="searchText">
-            <button type="submit">Submit</button>
+            <button type="submit">Search</button>
         </form>
+    </div>
+    <div class="fake-nav">
+        <div class="login-nav">
+            <a href="/users/login">Login</a>
+        </div>
+        <div class="login-nav">
+            <a href="/users/signup">Sign up</a>
+        </div>
     </div>
     
 </body>

@@ -94,7 +94,9 @@ function drawHelp(){
 	helpBubble.position = new Point(canvasWidth / 2  - canvasWidth / 5, canvasHeight / 2);
 	helpGroup.addChild(helpBubble);
 	drawLogoArc(new Point(canvasWidth / 2  - canvasWidth / 5, canvasHeight / 2), helpGroup);
-	drawLogoName(new Point(canvasWidth / 2  - canvasWidth / 5, canvasHeight / 2 + canvasHeight / 100),helpGroup,"How I Feel");
+
+	drawLogoName(new Point(canvasWidth / 2  - canvasWidth / 5, canvasHeight / 2 + canvasHeight / 100),helpGroup,"Help Me");
+
 }
 
 function drawSearch(){

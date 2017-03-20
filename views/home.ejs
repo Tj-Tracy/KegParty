@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="css/styles.css">
+	</head>
+<body>
+<h1>KegPary</h1>
+	<canvas id="canvas"></canvas>
+	
+	<form id="login" action="/users/login" method="post">
+  		Username:<br>
+  	<input type="text" name="username" ><br>
+  		Password:<br>
+ 		 <input type="text" name="password"><br><br>
+  		<input type="submit" value="Submit">
+	</form>
+	<form id="search" action="/search" method="get">
+  		<input type="text" name="search" ><br>
+  		
+  		Search:<br>
+  		<input type="submit" value="Submit">
+	</form>
+	
+	<script type="text/javascript" src="js/CanvasInput.js"></script>
+	<script type='text/javascript' src='src/canvasinput.js'></script>
+	<script type="text/javascript" src="js/jquery-3.1.1.min.js"> </script>
+	<script type="text/javascript" src="js/paper-full.js"></script>
+	<script type="text/javascript" src="js/paper-animate.min.js"></script>
+	<script type="text/javascript" src="js/home.js"></script>
+
+	<script type="text/paperscript" src="js/paperscript.js" canvas="canvas"></script>
+</body>
+
+</html>
+

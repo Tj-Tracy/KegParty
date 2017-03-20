@@ -1,0 +1,51 @@
+    [
+      {
+         "id":"Uu2ExM",
+         "name":"Goosinator Smoked Doppelbock 2007",
+         "nameDisplay":"Goosinator Smoked Doppelbock 2007",
+         "description":"A big malty beer with caramel & toffee flavors that has a clean & smooth finish. \r\n\r\nIngredients: Imported German barley & wheat malt, Northern Brewer & Vanguard Hops.",
+         "abv":"7.7",
+         "glasswareId":5,
+         "availableId":3,
+         "styleId":90,
+         "isOrganic":"N",
+         "status":"verified",
+         "statusDisplay":"Verified",
+         "createDate":"2012-01-03 02:43:17",
+         "updateDate":"2014-10-13 17:51:35",
+         "glass":{
+            "id":5,
+            "name":"Pint",
+            "createDate":"2012-01-03 02:41:33"
+         },
+         "available":{
+            "id":3,
+            "name":"Not Available",
+            "description":"Beer is not available."
+         },
+         "style":{
+            "id":90,
+            "categoryId":7,
+            "category":{
+               "id":7,
+               "name":"European-germanic Lager",
+               "createDate":"2012-03-21 20:06:46"
+            },
+            "name":"German-Style Doppelbock",
+            "shortName":"Doppelbock",
+            "description":"Malty sweetness is dominant but should not be cloying. Malt character is more reminiscent of fresh and lightly toasted Munich- style malt, more so than caramel or toffee malt character. Some elements of caramel and toffee can be evident and contribute to complexity, but the predominant malt character is an expression of toasted barley malt. Doppelbocks are full bodied and deep amber to dark brown in color. Astringency from roast malts is absent. Alcoholic strength is high, and hop rates increase with gravity. Hop bitterness and flavor should be low and hop aroma absent. Fruity esters are commonly perceived but at low to moderate levels. Diacetyl should be absent",
+            "ibuMin":"17",
+            "ibuMax":"27",
+            "abvMin":"6.5",
+            "abvMax":"8",
+            "srmMin":"12",
+            "srmMax":"30",
+            "ogMin":"1.074",
+            "fgMin":"1.014",
+            "fgMax":"1.02",
+            "createDate":"2012-03-21 20:06:46",
+            "updateDate":"2015-04-07 15:39:08"
+         },
+         "type":"beer"
+      }
+   ]
