@@ -9,6 +9,16 @@ h1 {
     color: sandybrown;
 }
 
+#result-title {
+  color: sandybrown;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
 .center {
     margin: 0 auto;
     width: 50%;
@@ -39,10 +49,49 @@ h1 {
     width: 100%;
     justify-content: center;
     flex-direction: column;
-    
+
 }
 
 #canvas {
     height: 100%;
     width: 100%;
+}
+
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    width: 50%;
+    background-color: lightgrey;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 600px;
+}
+
+.flex-item {
+    margin: 10px;
+}
+
+.review-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    background-color: lightgrey;
+    min-width: 600px;
+}
+
+.review {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.beer_image {
+  width: 200px;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
 }
