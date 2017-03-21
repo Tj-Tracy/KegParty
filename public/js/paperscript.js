@@ -32,7 +32,7 @@ var helpGroupChildren = new Group();
 startRadius= canvasWidth / 18;
 
 var recomendationText =  new PointText();
-
+var childArray = [];
 
 
 
@@ -94,7 +94,7 @@ function drawHelp(){
 	helpBubble.position = new Point(canvasWidth / 2  - canvasWidth / 5, canvasHeight / 2);
 	helpGroup.addChild(helpBubble);
 	drawLogoArc(new Point(canvasWidth / 2  - canvasWidth / 5, canvasHeight / 2), helpGroup);
-	drawLogoName(new Point(canvasWidth / 2  - canvasWidth / 5, canvasHeight / 2 + canvasHeight / 100),helpGroup,"Help Me");
+	drawLogoName(new Point(canvasWidth / 2  - canvasWidth / 5, canvasHeight / 2 + canvasHeight / 100),helpGroup,"How I Feel");
 }
 
 function drawSearch(){
@@ -377,6 +377,7 @@ function setUpSearchGroup(){
       			}});
 				  $('#search').hide();
 				  searchClicked = false;
+				  
 				  loginGroup.children[26].visible = true;
 				  searchGroup.children[26].visible = true;
 		}
@@ -412,10 +413,11 @@ function setUpHelpGroup(){
 
 
 			loginClicked = false;
-			helpClicked = false;
+			helpClicked = true;
 			searchClicked = true;
 		}
 		else {
+			cleanUpHelpGroupChildren();
 			loginGroup.animate({
       			properties: {
           			scale:1,
@@ -430,7 +432,8 @@ function setUpHelpGroup(){
 			helpGroup.animate({
       			properties: {
           			position: { x: canvasWidth / 2  - canvasWidth / 5,  y: canvasHeight / 2},
-					scale: 1
+					scale: 1,
+					rotate: 0
 					
       			},
       			settings: {
@@ -449,8 +452,11 @@ function setUpHelpGroup(){
           			duration: 500,
           			easing: "swing"
       			}});
+				  $('#login').hide();
 				  $('#search').hide();
-				  searchClicked = false;
+				  
+				  helpClicked = false;
+				  
 				  loginGroup.children[26].visible = true;
 				  
 				  searchGroup.children[26].visible = true;
@@ -459,7 +465,7 @@ function setUpHelpGroup(){
 }
 function drawHelpGroupChildren(){
 	var numChildren = 4;
-	var childArray = [];
+	
 
 	var childGroup = new Group();
 	 
@@ -483,6 +489,7 @@ function drawHelpGroupChildren(){
 		
 		setUpChild(childArray[i]);
 	}
+	childArray[i] = childGroup;
 	
 }
 function setUpChild(child){
@@ -558,5 +565,8 @@ function drawChildArc(center, group, color){
 	
 }
 function cleanUpHelpGroupChildren(){
-
+	for(var i=0; i < childArray.length;i++){
+		childArray[i].remove();
+	}
+	recomendationText.content = '';
 }

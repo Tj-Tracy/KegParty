@@ -19,6 +19,22 @@ a {
   font-weight: bold;
 }
 
+#canvas {
+    height: 100%;
+    width: 100%;
+    background-color: #FFFCED;
+}
+#login {
+    position: absolute;
+    top: 43%;
+    right: 46%;
+
+}
+#search {
+    position: absolute;
+    top: 43%;
+    right: 46%;
+
 .center {
     margin: 0 auto;
     width: 50%;
