@@ -1,10 +1,7 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
-
 html, body {
     margin: 0;
     padding: 0;
     border: 0;
-    background-color: #FFFCED;
 }
 
 h1 {
@@ -12,31 +9,22 @@ h1 {
     color: sandybrown;
 }
 
-#result-title {
-  color: sandybrown;
-}
-
-a {
-  text-decoration: none;
-  color: black;
-  font-weight: bold;
-}
-
 #canvas {
     height: 100%;
     width: 100%;
+    background-color: #FFFCED;
 }
 #login {
     position: absolute;
     top: 43%;
     right: 46%;
-
+    
 }
 #search {
     position: absolute;
     top: 43%;
     right: 46%;
-}
+
 
 .center {
     margin: 0 auto;
@@ -69,86 +57,5 @@ a {
     justify-content: center;
     flex-direction: column;
 
-}
-
-#canvas {
-    height: 100%;
-    width: 100%;
-}
-
-.flex-container {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-direction: row;
-    flex-direction: row;
-    width: 50%;
-    background-color: lightgrey;
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    min-width: 600px;
-}
-
-.flex-item {
-    margin: 10px;
-}
-
-
-.review-container {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-direction: column;
-    flex-direction: column;
-    width: 50%;
-    background-color: lightgrey;
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    min-width: 600px;
     
-}
-
-.review {
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-.beer_image {
-  width: 200px;
-  height: 300px;
-  margin: 5px;
-}
-
-/* seach bar stuff */
-
-.seach-container {
-  width: 100%;
-  padding: 5px;
-}
-
-.search-button {
-  position: absolute;  
-  border: 3px solid darkgray;
-  background: darkgray;
-  text-align: center;
-  color: #fff;
-  border-bottom-right-radius: 5px;
-  border-top-right-radius: 5px;
-  font-size: 20px;
-  text-align: center;
-}
-
-.search-textbar {
-  float: left;
-  border: 3px solid darkgray;
-  border-bottom-left-radius: 5px;
-  border-top-left-radius: 5px;
-  outline: none;
-  font-size: 20px;
-  text-align: center;
-  width: 89.5%;
-}
-
-.account-header {
-    justify-content: center;
 }
