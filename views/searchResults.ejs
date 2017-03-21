@@ -5,28 +5,28 @@
 </head>
 <body>
   <a href="/"> <h1 class="result-title">Keg Party</h1> </a>
-
-<div class = "flex-container">
-  <div class="flex-item">
-      <form method="get" action="/search" class="form-wrapper cf" >
-          <input type="text" name="searchText">
-          <button type="submit">Submit</button>
-      </form>
+  <div class = "review-container">
+  <div class="seach-container">
+    <form method="get" action="/search" >
+      <input type="text" name="searchText" class="search-textbar">
+      <input type="submit" class="search-button" value="GO" />
+    </form>
   </div>
-  <% if(beerList !== undefined){ %>
-      <% for(let i=0; i < beerList.length; i++){ %>
-        <% if(beerList[i].style != undefined){ %>
-          <div class = "flex-item"><a href='/beers/<%= beerList[i].id %>'><%= beerList[i].name %> | <%= beerList[i].style.name %></a>
-        <% } else { %>
-          <div class = "flex-item"><a href='/beers/<%= beerList[i].id %>'><%= beerList[i].name %>%></a>
+    <% if(beerList !== undefined){ %>
+        <% for(let i=0; i < beerList.length; i++){ %>
+          <% if(beerList[i].style != undefined){ %>
+            <div class = "flex-item"><a href='/beers/<%= beerList[i].id %>'><%= beerList[i].name %> | <%= beerList[i].style.name %></a>
+          <% } else { %>
+            <div class = "flex-item"><a href='/beers/<%= beerList[i].id %>'><%= beerList[i].name %>%></a>
+          <% } %>
+          <% if(beerList[i].description != undefined){ %>
+            <p><%= beerList[i].description %></p></div>
+          <% } else { %>
+            <p>(No Description)</p></div>
+          <% } %>
         <% } %>
-        <% if(beerList[i].description != undefined){ %>
-          <p><%= beerList[i].description %></p></div>
-        <% } else { %>
-          <p>(No Description)</p></div>
-        <% } %>
-      <% } %>
-  <% } else {%>
-    <p>No Search Results</p>
-  <%}%>
+    <% } else {%>
+      <p>No Search Results</p>
+    <%}%>
+  </div>
 </body>

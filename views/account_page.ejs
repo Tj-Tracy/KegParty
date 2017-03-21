@@ -9,10 +9,11 @@
 <body>
   <a href="/"> <h1>Keg Party</h1> </a>
   <br>
-  <h2>Hi <%= user.username %>!</h1>
-  <h3>Here are your current Favorites:</h2>
+  <div class="flex-container account-header">
+  <h2><%= user.username %></h2>
+  </div>
   <div class="flex-container">
-    <div class="flex-item">
+    <h3>current Favorites:</h3>
       <ul>
         <% for(let i=0; i < favorites.length; i++){ %>
           <li>
