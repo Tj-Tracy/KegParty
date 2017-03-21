@@ -1,20 +1,86 @@
 <!doctype html>
 <head>
     <title>KegParty - <%= beer.data.name %></title>
+    <link href="/css/styles.css" rel="stylesheet" ></link>
 </head>
 <body>
-    <h3><%= beer.data.name %></h3>
-    <% if(loggedInUser) {%>
-        <form action="/users/addToFavorites" method="post" target="uploader_iframe"> 
-            <input type="hidden" name="beerName" value="<%= beer.data.name %>" />
-            <input type="hidden" name="beerID" value="<%= beer.data.id %>" />
-            <input type="submit" value="Add To Favorites" />
-        </form>    
-        <iframe id="uploader_iframe" name="uploader_iframe" style="display: none;"></iframe>
-    <% } %>
-    <p>Style: <%= beer.data.style.name %></p>
-    <p><%= beer.data.description %></p>
-    <p>abv: <%= beer.data.style.abvMin %></p>
+  <a href="/"> <h1>Keg Party</h1> </a>
+    <h2 style="  text-align: center;"><%= beer.data.name %> | <%= beer.data.style.name %> | <%= beer.data.style.abvMin %>% ABV</h2>
 
+    <div class="flex-container">
+      <img class="beer_image" src="/img/Placeholder.png" alt="" width=100px;>
+      <div class="flex-item">
+        <h3> Description </h3>
+        <p><%= beer.data.description %></p>
+          <% if(loggedInUser) {%>
+            <div>
+              <form action="/users/addToFavorites" method="post" target="uploader_iframe">
+                <input type="hidden" name="beerName" value="<%= beer.data.name %>" />
+                <input type="hidden" name="beerID" value="<%= beer.data.id %>" />
+                <input type="submit" value="Add To Favorites" />
+              </form>
+              <iframe id="uploader_iframe" name="uploader_iframe" style="display: none;"></iframe>
+            </div>
+          <% } %>
+      </div>
+    </div>
+      <div class ="review-container">
+        <div class="review"> <h3> Reviews </h3> </div>
+        <div class="review">
+          <h4> User: User1 | Rating: ***** </h4>
+          <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut finibus libero sed consectetur finibus. Phasellus vel lectus nec libero vestibulum hendrerit. Curabitur id nulla sed mauris aliquam aliquet sit amet et lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a massa a arcu egestas lacinia a sed lacus. Vivamus ac purus vitae justo hendrerit porttitor eget vel quam. Vestibulum egestas elementum finibus. Pellentesque eu mattis nisi. Aenean posuere ornare felis, sit amet luctus sem venenatis a. </p>
+        </div>
+        <div class="review">
+          <h4> User: User2 | Rating: *** </h4>
+          <p>
+            In quis cursus nisl. Phasellus egestas vehicula purus nec porttitor.
+            Mauris ac sem velit. Aliquam erat volutpat. Vivamus at eros lectus
+            Class aptent taciti sociosqu ad litora torquent per conubia nostra,
+            per inceptos himenaeos. Cras ut ipsum mauris.
+        </p>
+        </div>
+        <div class="review">
+          <h4> User: User3 | Rating: **** </h4>
+          <p>
+            Aliquam quis ultricies eros, ac vestibulum ex. Nullam id nunc in dolor
+            sagittis laoreet. Donec libero tellus, posuere at suscipit sit amet,
+            tempus ac nisi. Aenean dignissim ac enim a facilisis. Ut quis massa est.
+            Suspendisse id varius lacus. Curabitur ullamcorper, nisi ut dignissim
+            dictum, neque felis posuere urna, quis rhoncus massa arcu vitae mauris.
+            Curabitur eleifend sodales suscipit. Suspendisse iaculis, urna vel interdum consequat,
+            felis ligula consectetur est, in sollicitudin ex leo quis nisl. Donec elementum
+            mauris sit amet iaculis faucibus. Etiam at mollis ante. Donec leo metus,
+            suscipit at odio id, posuere varius ex.
+        </p>
+        </div>
+        <div class="review">
+          <h4> User: User4 | Rating: ***** </h4>
+          <p>
+            Mauris efficitur nulla eget libero imperdiet, nec gravida mi cursus.
+            Phasellus at vulputate ante. Aenean interdum bibendum massa. Mauris
+            pulvinar massa sed ante venenatis rutrum. Cras sed euismod arcu, non
+            accumsan dui. Sed eu cursus purus. Nam pulvinar neque enim, ut rhoncus
+            diam molestie nec. Donec lacus erat, luctus non elementum at, vulputate
+            nec lectus. Quisque luctus orci non luctus aliquam. Mauris eleifend,
+            erat eget tristique iaculis, sem orci varius tellus, hendrerit euismod
+            lacus ligula sed nulla.
+          </p>
+        </div>
+        <div class="review">
+          <h4> User: User5 | Rating: ** </h4>
+          <p>
+            In ultricies tortor et lectus tristique, nec tempus ligula convallis.
+            Duis eu turpis sed diam euismod convallis. Fusce tincidunt ultricies felis,
+            eu volutpat enim molestie ut. In hac habitasse platea dictumst. Donec
+            auctor non lorem sed suscipit. Praesent ut mi tincidunt, porta risus at,
+            euismod ligula. Aenean id massa quis est volutpat tristique at vitae nisl.
+            Curabitur vitae congue turpis, nec venenatis risus. Etiam pharetra eros vitae
+            lectus facilisis facilisis. Fusce facilisis ultrices ornare. Vivamus cursus
+            mollis metus, egestas eleifend felis rutrum at. Aenean mollis eu libero nec
+            faucibus. Suspendisse vitae justo velit. Nulla ante elit, efficitur vitae
+            semper ac, maximus et quam.
+        </p>
+        </div>
+      </div>
 
 </body>
