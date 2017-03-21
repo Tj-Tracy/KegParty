@@ -32,7 +32,7 @@ const loginAuth = {
     console.log(req.isAuthenticated());
 
     //if the user is authenticated, bring them to thier account page
-    if (req.isAuthenticated()) {
+    if (req.isAuthenticated() && req.user.username == req.params.userid) {
       const user = req.user;
       const favs = await Favorite.find({ _user: req.user._id });
       return res.render('account_page', { user, favorites: favs });
