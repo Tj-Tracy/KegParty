@@ -11,7 +11,7 @@ require('dotenv').config();
 
 // connecting the local database
 const { DB_HOST, DB_NAME } = process.env;
-const DB_URL = `mongodb://${DB_HOST}/${DB_NAME}`;
+const DB_URL = `mongodb://${DB_HOST}:${DB_NAME}@ds137360.mlab.com:37360/kegparty`;
 mongoose.Promise = global.Promise;
 mongoose.connect(DB_URL);
 
@@ -39,7 +39,5 @@ app.use((req, res) => {
 
 
 
-app.listen('3000', () => {
-  console.log('running at http://localhost:3000');
-});
+app.listen(process.env.PORT || 3000);
 
