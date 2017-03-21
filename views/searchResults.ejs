@@ -1,32 +1,18 @@
 <!doctype html>
 <head>
     <title>KegParty - Search Results</title>
-    <link href="/css/styles.css" rel="stylesheet" ></link>
 </head>
 <body>
-  <a href="/"> <h1 class="result-title">Keg Party</h1> </a>
-  <div class = "review-container">
-  <div class="seach-container">
-    <form method="get" action="/search" >
-      <input type="text" name="searchText" class="search-textbar">
-      <input type="submit" class="search-button" value="GO" />
-    </form>
-  </div>
     <% if(beerList !== undefined){ %>
         <% for(let i=0; i < beerList.length; i++){ %>
-          <% if(beerList[i].style != undefined){ %>
-            <div class = "flex-item"><a href='/beers/<%= beerList[i].id %>'><%= beerList[i].name %> | <%= beerList[i].style.name %></a>
-          <% } else { %>
-            <div class = "flex-item"><a href='/beers/<%= beerList[i].id %>'><%= beerList[i].name %>%></a>
-          <% } %>
-          <% if(beerList[i].description != undefined){ %>
-            <p><%= beerList[i].description %></p></div>
-          <% } else { %>
-            <p>(No Description)</p></div>
-          <% } %>
+            <a href='/beers/<%= beerList[i].id %>'><%= beerList[i].name %></a>
+            <% if(beerList[i].description != undefined){ %>
+                <p><%= beerList[i].description %></p>
+            <% } else { %>
+                <p>(No Description)</p>
+            <% } %>
         <% } %>
     <% } else {%>
-      <p>No Search Results</p>
+        <p>No Search Results</p>
     <%}%>
-  </div>
 </body>
