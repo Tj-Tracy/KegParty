@@ -29,6 +29,9 @@
   "scripts": {
     "start": "nodemon app.js"
   },
+  "engines": {
+    "node": "7.6.0:"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Tj-Tracy/KegParty.git"
