@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const cookieSession = require('cookie-session');
 const Passport = require('passport');
 
 const logger = require('morgan');
@@ -22,19 +23,27 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(require('./middleware'));
+app.use(cookieSession({
+  name: 'session',
+  keys: ['bumpa'],
+}));
 app.use(require('express-session')({
   secret: 'bumpa',
   resave: false,
   saveUninitialized: false,
 }));
+
 app.use(Passport.initialize());
 app.use(Passport.session());
-// error 404
 app.use(require('./routes'));
+
+
+// error 404
 app.use((req, res) => {
   res.status(400);
   res.render('404');
 });
+
 
 
 

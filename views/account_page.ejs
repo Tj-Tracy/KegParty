@@ -1,27 +1,28 @@
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="/css/styles.css" rel="stylesheet" ></link>
-  <title>Kegparty: Profile</title>
-</head>
-<body>
-  <a href="/"> <h1>Keg Party</h1> </a>
-  <br>
-  <div class="flex-container account-header">
-  <h2><%= user.username %></h2>
-  </div>
-  <div class="flex-container">
-    <h3>current Favorites:</h3>
-      <ul>
-        <% for(let i=0; i < favorites.length; i++){ %>
-          <li>
-            <a href="/beers/<%= favorites[i].beerID %>"><%= favorites[i].beerName %></a>
-          </li>
-          <% } %>
-        </ul>
-      </div>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="/css/styles.css" rel="stylesheet" ></link>
+    <title>Kegparty: Profile</title>
+  </head>
+  <body>
+    <a href="/"> <h1>Keg Party</h1> </a>
+    <br>
+    <div class="flex-container account-header">
+    <h2><%= user.username %></h2>
+    <a href="/users/logout">Sign out</a>
     </div>
-</body>
+    <div class="flex-container">
+      <h3>current Favorites:</h3>
+        <ul>
+          <% for(let i=0; i < favorites.length; i++){ %>
+            <li>
+              <a href="/beers/<%= favorites[i].beerID %>"><%= favorites[i].beerName %></a>
+            </li>
+          <% } %>
+          </ul>
+        </div>
+      </div>
+  </body>
 </html>

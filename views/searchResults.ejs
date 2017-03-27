@@ -2,14 +2,16 @@
 <head>
     <title>KegParty - Search Results</title>
     <link href="/css/styles.css" rel="stylesheet" ></link>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+
 </head>
 <body>
   <a href="/"> <h1 class="result-title">Keg Party</h1> </a>
-  <div class = "review-container">
+  <div class = "flex-container-column">
   <div class="seach-container">
     <form method="get" action="/search" >
       <input type="text" name="searchText" class="search-textbar">
-      <input type="submit" class="search-button" value="GO" />
+      <button type="submit" class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
     </form>
   </div>
     <% if(beerList !== undefined){ %>

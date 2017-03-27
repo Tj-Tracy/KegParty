@@ -1,25 +1,52 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Lora|Montserrat');
+
+:root {
+    --siteBackground: #FFF8E1;
+    --headerTextColor: sandybrown;
+    --linkColor: black;
+    --basicFontColor: black;
+    --flexContainerColor: white;
+    --searchBorderColor: sandybrown;
+    --searchButtonColor: sandybrown;
+    --titleFont: 'Montserrat', sans-serif;
+    --basicTextFont: 'Lora', serif;
+
+
+}
 
 html, body {
     margin: 0;
     padding: 0;
     border: 0;
-    background-color: #FFFCED;
+    background-color: var(--siteBackground);
+}
+
+h1, h2 ,h3 {
+    text-align: center;
+    font-family: var(--titleFont);
 }
 
 h1 {
-    text-align: center;
-    color: sandybrown;
+    color: var(--headerTextColor);
 }
 
+
 #result-title {
-  color: sandybrown;
+  color: var(--headerTextColor);
 }
 
 a {
   text-decoration: none;
-  color: black;
+  color: var(--linkColor);
   font-weight: bold;
+  font-family: var(--titleFont);
+
+}
+
+p {
+    font-family: var(--basicTextFont);
+    color: var(--basicFontColor)
 }
 
 #canvas {
@@ -44,13 +71,10 @@ a {
 }
 
 .fourohfour {
-    color: sandybrown;
+    color: var(--headerTextColor);
     text-align: center;
 }
 
-.fourohfour p {
-    color: black;
-}
 
 .fake-nav {
     display: flex;
@@ -82,11 +106,12 @@ a {
     -webkit-flex-direction: row;
     flex-direction: row;
     width: 50%;
-    background-color: lightgrey;
+    background-color: var(--flexContainerColor);
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
     min-width: 600px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .flex-item {
@@ -94,17 +119,18 @@ a {
 }
 
 
-.review-container {
+.flex-container-column {
     display: -webkit-flex;
     display: flex;
     -webkit-flex-direction: column;
     flex-direction: column;
     width: 50%;
-    background-color: lightgrey;
+    background-color: var(--flexContainerColor);
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
     min-width: 600px;
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     
 }
 
@@ -113,8 +139,8 @@ a {
     margin-right: 10px;
 }
 
-.beer_image {
-  width: 200px;
+.beer-image {
+  width: 300px;
   height: 300px;
   margin: 5px;
 }
@@ -128,8 +154,8 @@ a {
 
 .search-button {
   position: absolute;  
-  border: 3px solid darkgray;
-  background: darkgray;
+  border: 3px solid var(--searchBorderColor);
+  background: var(--searchButtonColor);
   text-align: center;
   color: #fff;
   border-bottom-right-radius: 5px;
@@ -140,7 +166,7 @@ a {
 
 .search-textbar {
   float: left;
-  border: 3px solid darkgray;
+  border: 3px solid var(--searchBorderColor);
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
   outline: none;
@@ -151,4 +177,8 @@ a {
 
 .account-header {
     justify-content: center;
+}
+
+.beer-title {
+    text-align: center;
 }

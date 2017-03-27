@@ -3,16 +3,17 @@ const axios = require('axios');
 const { API_KEY } = process.env;
 
 const beerInfo = {
-  getBeerInfo: (req, res) => {
-    console.log(req.params.beerid);
-    axios.get(`http://api.brewerydb.com/v2/beer/${req.params.beerid}?key=${API_KEY}`)
-  .then((response) => {
+  getBeerInfo: async (req, res) => {
+    const response = await axios.get(`http://api.brewerydb.com/v2/beer/${req.params.beerid}?key=${API_KEY}`);
+    const breweryResponse = await axios.get(`http://api.brewerydb.com/v2/beer/${req.params.beerid}/breweries?key=${API_KEY}`);
     const beer = response.data;
+    const brewery = breweryResponse.data;
     const loggedInUser = req.isAuthenticated();
-    return res.render('beerInfo', { beer, loggedInUser });
-  }).catch((error) => {
-    res.send(error);
-  });
+    let isFav = false;
+    if (loggedInUser) {
+      isFav = req.user.favorites.find(fav => fav.beerID === req.params.beerid);
+    }
+    return res.render('beerInfo', { beer, loggedInUser, brewery, isFav });
   },
 };
 

@@ -5,26 +5,40 @@
 </head>
 <body>
   <a href="/"> <h1>Keg Party</h1> </a>
-    <h2 style="  text-align: center;"><%= beer.data.name %> | <%= beer.data.style.name %> | <%= beer.data.style.abvMin %>% ABV</h2>
-
+    <div class="flex-container-column beer-title">
+      <h2><%= beer.data.name %></h2>
+      <h3><%= brewery.data[0].name %></h3>
+    </div>
     <div class="flex-container">
-      <img class="beer_image" src="/img/Placeholder.png" alt="" width=100px;>
+      <% if (typeof beer.data.labels !== 'undefined') { %>
+        <img class="beer-image" src="<%= beer.data.labels.large %>" />
+      <% } else { %>
+        <img src="/img/Placeholder.png" />
+      <% } %>
       <div class="flex-item">
         <h3> Description </h3>
         <p><%= beer.data.description %></p>
-          <% if(loggedInUser) {%>
+        <p>Style: <%= beer.data.style.name %> </p>
+        <p>ABV: <%= beer.data.style.abvMin %>%</p>
+          <% if (loggedInUser && typeof isFav === 'undefined') {%>
             <div>
-              <form action="/users/addToFavorites" method="post" target="uploader_iframe">
+              <form action="/users/addToFavorites" method="post" >
                 <input type="hidden" name="beerName" value="<%= beer.data.name %>" />
                 <input type="hidden" name="beerID" value="<%= beer.data.id %>" />
                 <input type="submit" value="Add To Favorites" />
               </form>
-              <iframe id="uploader_iframe" name="uploader_iframe" style="display: none;"></iframe>
             </div>
+          <% } %>
+          <% if (typeof isFav !== 'undefined') { %>
+            <form action="/users/removeFromFavorites" method="post" >
+              <input type="hidden" name="beerName" value="<%= beer.data.name %>" />
+              <input type="hidden" name="beerID" value="<%= beer.data.id %>" />
+              <input type="submit" value="Remove From Favorites" />
+            </form>
           <% } %>
       </div>
     </div>
-      <div class ="review-container">
+      <div class ="flex-container-column">
         <div class="review"> <h3> Reviews </h3> </div>
         <div class="review">
           <h4> User: User1 | Rating: ***** </h4>

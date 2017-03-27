@@ -6,7 +6,10 @@ const PassportLocalMongoose = require('passport-local-mongoose');
 const User = new Schema({
   username: String,
   password: String,
-  favorites: [{ type: Schema.Types.ObjectId, ref: 'Favorites' }],
+  favorites: [{
+    beerName: String,
+    beerID: String,
+  }],
 });
 
 

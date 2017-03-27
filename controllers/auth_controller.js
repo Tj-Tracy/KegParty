@@ -1,7 +1,7 @@
 const Passport = require('passport');
 const User = require('../models/User');
 
-const signupAuth = {
+const Auth = {
   signup: (req, res) => {
     const newUser = new User({ username: req.body.username });
     User.register(newUser, req.body.password, (err, user) => {
@@ -11,16 +11,27 @@ const signupAuth = {
         } else if (!authUser) {
           return res.render('signup', { err: err.message });
         }
-        // return req.login(authUser, (loginError) => {
-        //   if (loginError) {
-        //     throw loginError;
-        //   }
-        //   return res.render('profile', { user: req.user.username });
-        // });
         return res.redirect('/users/login');
       })(req, res);
     });
   },
+
+   // log in the user
+  loginUser: (req, res, next) => {
+    Passport.authenticate('local', (err, user) => {
+      if (err) {
+        return res.render('login', { err });
+      } else if (!user) {
+        return res.render('login', { err });
+      }
+      return req.login(user, (loginError) => {
+        if (loginError) {
+          return res.render('login', { err: loginError });
+        }
+        return res.redirect(`/users/${user.username}`);
+      });
+    })(req, res, next);
+  },
 };
 
-module.exports = signupAuth;
+module.exports = Auth;
