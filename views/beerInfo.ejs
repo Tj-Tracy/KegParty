@@ -2,6 +2,7 @@
 <head>
     <title>KegParty - <%= beer.data.name %></title>
     <link href="/css/styles.css" rel="stylesheet" ></link>
+    <link href="/css/modal.css" rel="stylesheet" ></link>
 </head>
 <body>
   <a href="/"> <h1>Keg Party</h1> </a>
@@ -20,22 +21,25 @@
         <p><%= beer.data.description %></p>
         <p>Style: <%= beer.data.style.name %> </p>
         <p>ABV: <%= beer.data.style.abvMin %>%</p>
-          <% if (loggedInUser && typeof isFav === 'undefined') {%>
+        <% if (loggedInUser) { %>
+          <% if (typeof isFav === 'undefined') { %>
             <div>
               <form action="/users/addToFavorites" method="post" >
                 <input type="hidden" name="beerName" value="<%= beer.data.name %>" />
                 <input type="hidden" name="beerID" value="<%= beer.data.id %>" />
                 <input type="submit" value="Add To Favorites" />
               </form>
+              <button id="reviewButton">Write a Review</button>
             </div>
           <% } %>
-          <% if (loggedInUser && typeof isFav !== 'undefined') { %>
+          <% if (typeof isFav !== 'undefined') { %>
             <form action="/users/removeFromFavorites" method="post" >
               <input type="hidden" name="beerName" value="<%= beer.data.name %>" />
               <input type="hidden" name="beerID" value="<%= beer.data.id %>" />
               <input type="submit" value="Remove From Favorites" />
             </form>
           <% } %>
+        <% } %>
       </div>
     </div>
       <div class ="flex-container-column">
@@ -96,5 +100,46 @@
         </p>
         </div>
       </div>
+
+    <div id="reviewModal" class="modal">
+    <a id="closeModal" class="close"></a>
+    <div class="modal-content">
+      <form action="/users/addReview" method="post">
+        <div class="flex-container-column-no-shadow">
+          <input type="text" name="title" class="flex-item" />
+          <textarea name="textBody" id="textBody" cols="30" rows="10" class="flex-item"></textarea>
+          <input type="number" name="rating" min="0" max="5" class="flex-item" />
+           <input type="hidden" name="beerID" value="<%= beer.data.id %>" />
+          <input type="submit" name="submit" class="flex-item" />
+        </div>
+      </form>
+    </div>
+  </div>
+  <script>
+    const modal = document.getElementById('reviewModal');
+
+  // Get the button that opens the modal
+  const btn = document.getElementById('reviewButton');
+
+  // Get the <span> element that closes the modal
+  const close = document.getElementById('closeModal');
+
+  // When the user clicks the button, open the modal 
+  btn.onclick = function() {
+      modal.style.display = "block";
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  close.onclick = function() {
+      modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  }
+  </script>
 
 </body>

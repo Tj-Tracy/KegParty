@@ -11,7 +11,7 @@ const Auth = {
         } else if (!authUser) {
           return res.render('signup', { err: err.message });
         }
-        return res.redirect('/users/login');
+        return res.redirect('/login');
       })(req, res);
     });
   },

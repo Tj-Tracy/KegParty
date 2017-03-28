@@ -1,0 +1,52 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="/css/modal.css" rel="stylesheet" ></link>
+  <link href="/css/styles.css" rel="stylesheet" ></link>
+  <title>Kegparty-Review</title>
+</head>
+<body>
+  <div id="myModal" class="modal">
+    <a id="closeModal" class="close"></a>
+    <div class="modal-content">
+      <form action="/users/addReview" method="post">
+        <div class="flex-container-column-no-shadow">
+          <input type="text" name="title" class="flex-item" />
+          <textarea name="textBody" id="textBody" cols="30" rows="10" class="flex-item"></textarea>
+          <input type="number" name="rating" min="0" max="5" class="flex-item" />
+          <input type="submit" name="submit" class="flex-item" />
+        </div>
+      </form>
+    </div>
+  </div>
+<button id="myBtn">soeso</button>
+</body>
+<script>
+  const modal = document.getElementById('myModal');
+
+  // Get the button that opens the modal
+  const btn = document.getElementById("myBtn");
+
+  // Get the <span> element that closes the modal
+  const close = document.getElementById("closeModal");
+
+  // When the user clicks the button, open the modal 
+  btn.onclick = function() {
+      modal.style.display = "block";
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  close.onclick = function() {
+      modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  }
+</script>
+</html>

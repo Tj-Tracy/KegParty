@@ -9,6 +9,7 @@ const User = new Schema({
   favorites: [{
     beerName: String,
     beerID: String,
+    rating: { type: Number, min: 0, max: 5 },
   }],
 });
 

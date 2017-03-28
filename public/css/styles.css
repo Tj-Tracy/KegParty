@@ -65,11 +65,6 @@ p {
     right: 46%;
 }
 
-.center {
-    margin: 0 auto;
-    width: 50%;
-}
-
 .fourohfour {
     color: var(--headerTextColor);
     text-align: center;
@@ -186,4 +181,23 @@ p {
 
 .beer-title {
     text-align: center;
+}
+
+.favorites-columns {
+    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+}
+
+.flex-container-column-no-shadow {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    width: 50%;
+    background-color: var(--flexContainerColor);
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 600px;    
 }

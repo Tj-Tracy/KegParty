@@ -10,14 +10,20 @@
     <a href="/"> <h1>Keg Party</h1> </a>
     <br>
     <div class="flex-container account-header">
-    <h2><%= user.username %></h2>
-    <a href="/users/logout">Sign out</a>
+      <div class="flex-item">
+        <h2><%= user.username %></h2>
+      </div>
+      <div class="flex-item">
+        <a href="/logout">Sign out</a>
+      </div>
     </div>
-    <div class="flex-container">
+    <div class="flex-container-column">
+      <div class="flex-item">
       <h3>current Favorites:</h3>
-        <ul>
+      </div>
+        <ul class="favorites-columns">
           <% for(let i=0; i < favorites.length; i++){ %>
-            <li>
+            <li class="flex-item">
               <a href="/beers/<%= favorites[i].beerID %>"><%= favorites[i].beerName %></a>
             </li>
           <% } %>

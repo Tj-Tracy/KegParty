@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const Review = require('../models/Review');
 
 const userMethods = {
 
@@ -25,14 +26,26 @@ const userMethods = {
     const favorite = { beerName: req.body.beerName, beerID: req.body.beerID };
     req.user.favorites.push(favorite);
     req.user.save();
-    return res.redirect(`back`);
+    return res.redirect('back');
   },
 
   removeFavorite: (req, res) => {
     const isFav = req.user.favorites.indexOf(req.user.favorites.find(fav => fav.beerID === req.body.beerID));
     req.user.favorites.splice(isFav, 1);
     req.user.save();
-    return res.redirect(`back`);
+    return res.redirect('back');
+  },
+
+  addReview: (req, res) => {
+    const newReview = new Review();
+    newReview.beerid = req.body.beerID;
+    newReview.userid = req.user.username;
+    newReview.title = req.body.title;
+    newReview.body = req.body.textBody;
+    newReview.rating = req.body.rating;
+
+    newReview.save();
+    return res.redirect('back');
   },
 
 };
