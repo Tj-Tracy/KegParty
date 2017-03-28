@@ -25,14 +25,14 @@ const userMethods = {
     const favorite = { beerName: req.body.beerName, beerID: req.body.beerID };
     req.user.favorites.push(favorite);
     req.user.save();
-    return res.redirect(`/beers/${req.body.beerID}`);
+    return res.redirect(`back`);
   },
 
   removeFavorite: (req, res) => {
     const isFav = req.user.favorites.indexOf(req.user.favorites.find(fav => fav.beerID === req.body.beerID));
     req.user.favorites.splice(isFav, 1);
     req.user.save();
-    return res.redirect(`/beers/${req.body.beerID}`);
+    return res.redirect(`back`);
   },
 
 };

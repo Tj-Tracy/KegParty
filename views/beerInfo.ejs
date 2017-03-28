@@ -11,7 +11,7 @@
     </div>
     <div class="flex-container">
       <% if (typeof beer.data.labels !== 'undefined') { %>
-        <img class="beer-image" src="<%= beer.data.labels.large %>" />
+        <img class="beer-image flex-item" src="<%= beer.data.labels.large %>" />
       <% } else { %>
         <img src="/img/Placeholder.png" />
       <% } %>
@@ -29,7 +29,7 @@
               </form>
             </div>
           <% } %>
-          <% if (typeof isFav !== 'undefined') { %>
+          <% if (loggedInUser && typeof isFav !== 'undefined') { %>
             <form action="/users/removeFromFavorites" method="post" >
               <input type="hidden" name="beerName" value="<%= beer.data.name %>" />
               <input type="hidden" name="beerID" value="<%= beer.data.id %>" />

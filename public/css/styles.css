@@ -134,6 +134,7 @@ p {
     
 }
 
+
 .review {
     margin-left: 10px;
     margin-right: 10px;
@@ -142,18 +143,20 @@ p {
 .beer-image {
   width: 300px;
   height: 300px;
-  margin: 5px;
+  min-width: 300px;
 }
 
 /* seach bar stuff */
 
-.seach-container {
+.search-container {
+  justify-content: center;
   width: 100%;
-  padding: 5px;
+  margin-right: 0;
 }
 
 .search-button {
-  position: absolute;  
+  float: right;
+  width: 2em;
   border: 3px solid var(--searchBorderColor);
   background: var(--searchButtonColor);
   text-align: center;
@@ -162,6 +165,7 @@ p {
   border-top-right-radius: 5px;
   font-size: 20px;
   text-align: center;
+  margin-left: 0;
 }
 
 .search-textbar {
@@ -172,7 +176,8 @@ p {
   outline: none;
   font-size: 20px;
   text-align: center;
-  width: 89.5%;
+  width: 100%;
+  margin-right: 0;
 }
 
 .account-header {
