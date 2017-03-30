@@ -7,28 +7,66 @@
     <title>Kegparty: Profile</title>
   </head>
   <body>
-    <a href="/"> <h1>Keg Party</h1> </a>
-    <br>
-    <div class="flex-container account-header">
-      <div class="flex-item">
-        <h2><%= user.username %></h2>
+    <div class="wrapper">
+      <a href="/"> <h1>Keg Party</h1> </a>
+      <br>
+      <div class="flex-container account-header">
+        <div class="flex-item">
+          <h2><%= user.username %></h2>
+        </div>
+        <div class="flex-item">
+          <a href="/logout">Sign out</a>
+        </div>
       </div>
-      <div class="flex-item">
-        <a href="/logout">Sign out</a>
-      </div>
-    </div>
-    <div class="flex-container-column">
-      <div class="flex-item">
-      <h3>current Favorites:</h3>
-      </div>
-        <ul class="favorites-columns">
-          <% for(let i=0; i < favorites.length; i++){ %>
-            <li class="flex-item">
-              <a href="/beers/<%= favorites[i].beerID %>"><%= favorites[i].beerName %></a>
-            </li>
-          <% } %>
+      <div class="flex-container-column">
+        <div class="flex-item">
+        <h3> Your Favorite Beers:</h3>
+        </div>
+          <ul class="favorites-columns">
+            <% for(let i=0; i < favorites.length; i++){ %>
+              <li class="flex-item">
+                <a href="/beers/<%= favorites[i].beerID %>"><%= favorites[i].beerName %></a>
+              </li>
+            <% } %>
           </ul>
         </div>
       </div>
+      <div class="flex-container-column">
+       <div class="review"> <h3>Your Reviews</h3> </div>
+          <div class="review">
+          <% if (reviews.length < 1) { %>
+          <h3>No reviews yet. Get out there and write some!</h3>
+          <% } %>
+          </div>
+          
+          <% reviews.forEach((item) => { %>
+            <div class="review">
+              <h4><%= item.title %> | Rating: <%= item.rating %></h4>
+              <p><%= item.body %></p>
+              <h5><a href="/beers/<%= item.beerid %>">Go to this review</a></h5>
+              <button class="deleteReview" id="<%= item._id %>">Delete this review</button>
+            </div>
+          <% }); %>
+          </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="/js/jquery-3.1.1.min.js"> </script>
+    <script>
+      $('.deleteReview').click((event) => {
+        const boop = event;
+        $.ajax({
+          'url' : '/users/deleteReview',
+          'type' : 'POST',
+          'data' : {
+            'reviewId': boop.target.id
+          },
+          'error' : function(request,error)
+          {
+            console.log(error);
+          }
+        });
+        location.reload();
+      });
+    </script>
   </body>
 </html>

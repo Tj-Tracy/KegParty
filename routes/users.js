@@ -16,7 +16,7 @@ const router = express.Router();
 router.post('/addToFavorites', userController.addFavorite);
 router.post('/removeFromFavorites', userController.removeFavorite);
 router.post('/addReview', userController.addReview);
-router.get('/review', (req, res) => res.render('review.ejs'));
+router.post('/deleteReview', userController.deleteReview);
 router.get('/:userid', userController.showProfile);
 
 module.exports = router;

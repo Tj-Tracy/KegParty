@@ -5,141 +5,73 @@
     <link href="/css/modal.css" rel="stylesheet" ></link>
 </head>
 <body>
-  <a href="/"> <h1>Keg Party</h1> </a>
-    <div class="flex-container-column beer-title">
-      <h2><%= beer.data.name %></h2>
-      <h3><%= brewery.data[0].name %></h3>
-    </div>
-    <div class="flex-container">
-      <% if (typeof beer.data.labels !== 'undefined') { %>
-        <img class="beer-image flex-item" src="<%= beer.data.labels.large %>" />
-      <% } else { %>
-        <img src="/img/Placeholder.png" />
-      <% } %>
-      <div class="flex-item">
-        <h3> Description </h3>
-        <p><%= beer.data.description %></p>
-        <p>Style: <%= beer.data.style.name %> </p>
-        <p>ABV: <%= beer.data.style.abvMin %>%</p>
-        <% if (loggedInUser) { %>
-          <% if (typeof isFav === 'undefined') { %>
-            <div>
-              <form action="/users/addToFavorites" method="post" >
+  <div class="wrapper">
+    <a href="/"> <h1>Keg Party</h1> </a>
+      <div class="flex-container-column beer-title">
+        <h2><%= beer.data.name %></h2>
+        <h3><%= brewery.data[0].name %></h3>
+      </div>
+      <div class="flex-container">
+        <% if (typeof beer.data.labels !== 'undefined') { %>
+          <img class="beer-image flex-item" src="<%= beer.data.labels.large %>" />
+        <% } else { %>
+          <img src="/img/Placeholder.png" />
+        <% } %>
+        <div class="flex-item">
+          <h3> Description </h3>
+          <p><%= beer.data.description %></p>
+          <p>Style: <%= beer.data.style.name %> </p>
+          <p>ABV: <%= beer.data.style.abvMin %>%</p>
+          <% if (loggedInUser) { %>
+            <% if (typeof isFav === 'undefined') { %>
+              <div>
+                <form action="/users/addToFavorites" method="post" >
+                  <input type="hidden" name="beerName" value="<%= beer.data.name %>" />
+                  <input type="hidden" name="beerID" value="<%= beer.data.id %>" />
+                  <input type="submit" value="Add To Favorites" />
+                </form>
+                <button id="reviewButton" onclick="showReviewModal()" >Write a Review</button>
+              </div>
+            <% } %>
+            <% if (typeof isFav !== 'undefined') { %>
+              <form action="/users/removeFromFavorites" method="post" >
                 <input type="hidden" name="beerName" value="<%= beer.data.name %>" />
                 <input type="hidden" name="beerID" value="<%= beer.data.id %>" />
-                <input type="submit" value="Add To Favorites" />
+                <input type="submit" value="Remove From Favorites" />
               </form>
-              <button id="reviewButton">Write a Review</button>
-            </div>
+              <button id="reviewButton" onclick="showReviewModal()" >Write a Review</button>              
+            <% } %>
           <% } %>
-          <% if (typeof isFav !== 'undefined') { %>
-            <form action="/users/removeFromFavorites" method="post" >
-              <input type="hidden" name="beerName" value="<%= beer.data.name %>" />
-              <input type="hidden" name="beerID" value="<%= beer.data.id %>" />
-              <input type="submit" value="Remove From Favorites" />
-            </form>
-          <% } %>
-        <% } %>
-      </div>
-    </div>
-      <div class ="flex-container-column">
-        <div class="review"> <h3> Reviews </h3> </div>
-        <div class="review">
-          <h4> User: User1 | Rating: ***** </h4>
-          <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut finibus libero sed consectetur finibus. Phasellus vel lectus nec libero vestibulum hendrerit. Curabitur id nulla sed mauris aliquam aliquet sit amet et lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a massa a arcu egestas lacinia a sed lacus. Vivamus ac purus vitae justo hendrerit porttitor eget vel quam. Vestibulum egestas elementum finibus. Pellentesque eu mattis nisi. Aenean posuere ornare felis, sit amet luctus sem venenatis a. </p>
-        </div>
-        <div class="review">
-          <h4> User: User2 | Rating: *** </h4>
-          <p>
-            In quis cursus nisl. Phasellus egestas vehicula purus nec porttitor.
-            Mauris ac sem velit. Aliquam erat volutpat. Vivamus at eros lectus
-            Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-            per inceptos himenaeos. Cras ut ipsum mauris.
-        </p>
-        </div>
-        <div class="review">
-          <h4> User: User3 | Rating: **** </h4>
-          <p>
-            Aliquam quis ultricies eros, ac vestibulum ex. Nullam id nunc in dolor
-            sagittis laoreet. Donec libero tellus, posuere at suscipit sit amet,
-            tempus ac nisi. Aenean dignissim ac enim a facilisis. Ut quis massa est.
-            Suspendisse id varius lacus. Curabitur ullamcorper, nisi ut dignissim
-            dictum, neque felis posuere urna, quis rhoncus massa arcu vitae mauris.
-            Curabitur eleifend sodales suscipit. Suspendisse iaculis, urna vel interdum consequat,
-            felis ligula consectetur est, in sollicitudin ex leo quis nisl. Donec elementum
-            mauris sit amet iaculis faucibus. Etiam at mollis ante. Donec leo metus,
-            suscipit at odio id, posuere varius ex.
-        </p>
-        </div>
-        <div class="review">
-          <h4> User: User4 | Rating: ***** </h4>
-          <p>
-            Mauris efficitur nulla eget libero imperdiet, nec gravida mi cursus.
-            Phasellus at vulputate ante. Aenean interdum bibendum massa. Mauris
-            pulvinar massa sed ante venenatis rutrum. Cras sed euismod arcu, non
-            accumsan dui. Sed eu cursus purus. Nam pulvinar neque enim, ut rhoncus
-            diam molestie nec. Donec lacus erat, luctus non elementum at, vulputate
-            nec lectus. Quisque luctus orci non luctus aliquam. Mauris eleifend,
-            erat eget tristique iaculis, sem orci varius tellus, hendrerit euismod
-            lacus ligula sed nulla.
-          </p>
-        </div>
-        <div class="review">
-          <h4> User: User5 | Rating: ** </h4>
-          <p>
-            In ultricies tortor et lectus tristique, nec tempus ligula convallis.
-            Duis eu turpis sed diam euismod convallis. Fusce tincidunt ultricies felis,
-            eu volutpat enim molestie ut. In hac habitasse platea dictumst. Donec
-            auctor non lorem sed suscipit. Praesent ut mi tincidunt, porta risus at,
-            euismod ligula. Aenean id massa quis est volutpat tristique at vitae nisl.
-            Curabitur vitae congue turpis, nec venenatis risus. Etiam pharetra eros vitae
-            lectus facilisis facilisis. Fusce facilisis ultrices ornare. Vivamus cursus
-            mollis metus, egestas eleifend felis rutrum at. Aenean mollis eu libero nec
-            faucibus. Suspendisse vitae justo velit. Nulla ante elit, efficitur vitae
-            semper ac, maximus et quam.
-        </p>
         </div>
       </div>
-
-    <div id="reviewModal" class="modal">
-    <a id="closeModal" class="close"></a>
-    <div class="modal-content">
-      <form action="/users/addReview" method="post">
-        <div class="flex-container-column-no-shadow">
-          <input type="text" name="title" class="flex-item" />
-          <textarea name="textBody" id="textBody" cols="30" rows="10" class="flex-item"></textarea>
-          <input type="number" name="rating" min="0" max="5" class="flex-item" />
-           <input type="hidden" name="beerID" value="<%= beer.data.id %>" />
-          <input type="submit" name="submit" class="flex-item" />
+        <div class ="flex-container-column">
+          <div class="review"> <h3> Reviews </h3> </div>
+          <div class="review">
+          <% if (reviews.length < 1) { %>
+          <h3>No reviews yet. Be the first to review this beer!</h3>
+          <% } %>
+          <% reviews.forEach((item) => { %>
+            <h4><%= item.title %> | Rating: <%= item.rating %></h4>
+            <h5> User: <%= item.userid %></h5>
+            <p><%= item.body %></p>
+          <% }); %>
+          </div>
         </div>
-      </form>
+
+
+      <div id="reviewModal" class="modal">
+      <div class="modal-content">
+        <form action="/users/addReview" method="post">
+          <div class="flex-item">
+            Title:<br/> <input type="text" name="title" class="flex-item" /><br/>
+            Body: <textarea name="textBody" id="textBody" cols="30" rows="10" class="flex-item"></textarea>
+            Rating: <input type="number" name="rating" min="0" max="5" class="flex-item" />
+            <input type="hidden" name="beerID" value="<%= beer.data.id %>" />
+            <input type="submit" name="submit" class="flex-item" />
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
-  <script>
-    const modal = document.getElementById('reviewModal');
-
-  // Get the button that opens the modal
-  const btn = document.getElementById('reviewButton');
-
-  // Get the <span> element that closes the modal
-  const close = document.getElementById('closeModal');
-
-  // When the user clicks the button, open the modal 
-  btn.onclick = function() {
-      modal.style.display = "block";
-  }
-
-  // When the user clicks on <span> (x), close the modal
-  close.onclick = function() {
-      modal.style.display = "none";
-  }
-
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event) {
-      if (event.target == modal) {
-          modal.style.display = "none";
-      }
-  }
-  </script>
-
+</div>
+  <script type="text/javascript" src="/js/helpers.js"></script>
 </body>

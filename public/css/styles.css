@@ -31,6 +31,10 @@ h1 {
     color: var(--headerTextColor);
 }
 
+h4 {
+    font-family: var(--titleFont);
+}
+
 
 #result-title {
   color: var(--headerTextColor);
@@ -200,4 +204,12 @@ p {
     margin-left: auto;
     margin-right: auto;
     min-width: 600px;    
+}
+
+.wrapper {
+    margin: 20px;
+}
+
+.delete {
+    color: indianred;
 }

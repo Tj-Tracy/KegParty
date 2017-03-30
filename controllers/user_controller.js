@@ -3,14 +3,15 @@ const Review = require('../models/Review');
 
 const userMethods = {
 
-  showProfile: (req, res) => {
+  showProfile: async (req, res) => {
     // how to check if there is a user logged in: req.isAuthenticated()
     // if the user is authenticated, bring them to thier account page
     if (req.isAuthenticated() && req.user.username === req.params.userid) {
       const user = req.user;
       // const favs = await Favorite.find({ _user: req.user._id });
       const favs = user.favorites;
-      return res.render('account_page', { user, favorites: favs });
+      const reviews = await Review.find({ userid: `${req.user.username}` });
+      return res.render('account_page', { user, favorites: favs, reviews });
     }
     const user = req.params.userid;
     // if the user exists in the database take them to your page
@@ -45,6 +46,11 @@ const userMethods = {
     newReview.rating = req.body.rating;
 
     newReview.save();
+    return res.redirect('back');
+  },
+
+  deleteReview: async (req, res) => {
+    await Review.find({ _id: `${req.body.reviewId}` }).remove();
     return res.redirect('back');
   },
 
