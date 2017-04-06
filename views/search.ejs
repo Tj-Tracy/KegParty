@@ -26,22 +26,4 @@
         <i class="fa fa-search" aria-hidden="true"></i>
       </button>
     </div>
-  <div class = "flex-container-column">
-    <% if(beerList !== undefined){ %>
-        <% for(let i=0; i < beerList.length; i++){ %>
-          <% if(beerList[i].style != undefined){ %>
-            <div class = "flex-item"><a href='/beers/<%= beerList[i].id %>'><%= beerList[i].name %> | <%= beerList[i].style.name %></a>
-          <% } else { %>
-            <div class = "flex-item"><a href='/beers/<%= beerList[i].id %>'><%= beerList[i].name %>%></a>
-          <% } %>
-          <% if(beerList[i].description != undefined){ %>
-            <p><%= beerList[i].description %></p></div>
-          <% } else { %>
-            <p>(No Description)</p></div>
-          <% } %>
-        <% } %>
-    <% } else {%>
-      <p>No Search Results</p>
-    <%}%>
-  </div>
-</body>
+  </body>

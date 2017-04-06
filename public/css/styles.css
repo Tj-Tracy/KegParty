@@ -5,6 +5,7 @@
     --siteBackground: #FFF8E1;
     --headerTextColor: sandybrown;
     --linkColor: black;
+    --logoColor: white;
     --basicFontColor: black;
     --flexContainerColor: white;
     --searchBorderColor: sandybrown;
@@ -28,13 +29,18 @@ h1, h2 ,h3 {
 }
 
 h1 {
-    color: var(--headerTextColor);
-}
+    color: var(--logoColor);
+}   
 
 h4 {
     font-family: var(--titleFont);
 }
 
+.site-header {
+    background: var(--headerTextColor);
+    padding-top: 50px;
+
+}
 
 #result-title {
   color: var(--headerTextColor);
@@ -53,16 +59,34 @@ p {
     color: var(--basicFontColor)
 }
 
+.btn {
+ 
+  font-family: var(--titleFont);
+  color: black;
+  background: white;
+  border: 0;
+}
+
+.btn:hover {
+  background: #f7bf90;
+  text-decoration: none;
+  transition: .4s;
+}
+
 #canvas {
     height: 100%;
     width: 100%;
 }
-#login {
-    position: absolute;
-    top: 43%;
-    right: 46%;
-
+.login {
+    width: 200px !important;
+    min-width: 200px !important;
 }
+
+.login h2 {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
 #search {
     position: absolute;
     top: 43%;
@@ -135,8 +159,7 @@ p {
 
 
 .review {
-    margin-left: 10px;
-    margin-right: 10px;
+   margin: 15px;
 }
 
 .beer-image {
@@ -211,5 +234,13 @@ p {
 }
 
 .delete {
-    color: indianred;
+    color: black;
+    padding: 0;
+}
+
+.delete:hover {
+  background: indianred;
+  text-decoration: none;
+  transition: .4s;
+
 }

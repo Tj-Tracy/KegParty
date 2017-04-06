@@ -13,10 +13,12 @@ const beerInfo = {
     const loggedInUser = req.isAuthenticated();
     // get the reviews
     const reviews = await Review.find({ beerid: `${req.params.beerid}` });
-    console.log(reviews);
     let isFav = false;
     if (loggedInUser) {
-      isFav = req.user.favorites.find(fav => fav.beerID === req.params.beerid);
+      if (req.user.favorites.find(fav => fav.beerID === req.params.beerid) !== undefined) {
+        isFav = true;
+      }
+      console.log(isFav);
     }
     return res.render('beerInfo', { beer, loggedInUser, brewery, isFav, reviews });
   },

@@ -17,6 +17,10 @@ router.post('/addToFavorites', userController.addFavorite);
 router.post('/removeFromFavorites', userController.removeFavorite);
 router.post('/addReview', userController.addReview);
 router.post('/deleteReview', userController.deleteReview);
+router.get('/account', (req, res) => {
+  return res.redirect(`/users/${req.user.username}`);
+});
+
 router.get('/:userid', userController.showProfile);
 
 module.exports = router;
