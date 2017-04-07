@@ -49,11 +49,11 @@
         </div>
       </div>
         <div class ="flex-container-column">
-          <div class="review"> <h3> Reviews </h3> </div>
-          <div class="review">
+          <div> <h3> Reviews </h3> </div>
           <% if (reviews.length < 1) { %>
-          <h3>No reviews yet. Be the first to review this beer!</h3>
+          <h3 style="text-align:center;">No reviews yet. Be the first to review this beer!</h3>
           <% } %>
+          <div class="review flex-container-column">
           <% reviews.forEach((item) => { %>
             <h4><%= item.title %> | Rating: <%= item.rating %></h4>
             <h5> User: <%= item.userid %></h5>
@@ -66,12 +66,22 @@
       <div id="reviewModal" class="modal">
       <div class="modal-content">
         <form action="/users/addReview" method="post">
+        <div class="flex-item">
+          <h2>Write a Review</h2>
+        </div>
           <div class="flex-item">
-            Title:<br/> <input type="text" name="title" class="flex-item" /><br/>
-            Body: <textarea name="textBody" id="textBody" cols="30" rows="10" class="flex-item"></textarea>
-            Rating: <input type="number" name="rating" min="0" max="5" class="flex-item" />
+            Title:<br/> <input type="text" name="title" class="review-modal-input" /><br/>
+          </div>
+          <div class="flex-item">
+            Body: <textarea name="textBody" id="textBody" cols="30" rows="10" class="review-modal-input"></textarea>
+          </div>
+          <div class="flex-item">
+            Rating: <input type="number" name="rating" min="0" max="5" class="review-modal-input" />
+          </div>
             <input type="hidden" name="beerID" value="<%= beer.data.id %>" />
-            <input type="submit" name="submit" class="flex-item" />
+          <div class="flex-item">
+            <input type="submit" class="btn" name="submit" />
+          </div>
           </div>
         </form>
       </div>

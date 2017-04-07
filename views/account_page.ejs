@@ -41,19 +41,19 @@
             </ul>
         </div>
         <div class="flex-container-column">
-        <div> <h3>Your Reviews</h3> </div>
+        <div><h3>Your Reviews</h3> </div>
             <div class="review">
             <% if (reviews.length < 1) { %>
-            <h3>No reviews yet. Get out there and write some!</h3>
+            <h3 style="text-align:center;">No reviews yet. Get out there and write some!</h3>
             <% } %>
             </div>
             
             <% reviews.forEach((item) => { %>
-              <div class="review">
+              <div class=" flex-container-column review">
                 <h4><%= item.title %> | Rating: <%= item.rating %></h4>
                 <p><%= item.body %></p>
-                <h5><a class="btn" href="/beers/<%= item.beerid %>">Go to this review</a></h5>
-                <button class=" btn delete" id="<%= item._id %>">Delete this review</button>
+                <button class="btn"><a class="btn" style="width:100%;display:none'" href="/beers/<%= item.beerid %>">Go to this review</a></button>
+                <button class=" btn delete deleteReview" id="<%= item._id %>">Delete this review</button>
               </div>
             <% }); %>
             </div>
