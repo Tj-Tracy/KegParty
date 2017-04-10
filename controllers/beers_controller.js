@@ -18,7 +18,6 @@ const beerInfo = {
       if (req.user.favorites.find(fav => fav.beerID === req.params.beerid) !== undefined) {
         isFav = true;
       }
-      console.log(isFav);
     }
     return res.render('beerInfo', { beer, loggedInUser, brewery, isFav, reviews });
   },

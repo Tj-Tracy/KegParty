@@ -190,6 +190,7 @@ p {
   min-width: 300px;
 }
 
+
 /* seach bar stuff */
 
 .search-container {
@@ -266,4 +267,8 @@ p {
   text-decoration: none;
   transition: .4s;
 
+}
+
+.no-margin {
+    margin: 5px;
 }

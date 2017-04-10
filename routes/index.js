@@ -1,10 +1,11 @@
 const express = require('express');
 const authController = require('../controllers/auth_controller');
+const homeController = require('../controllers/home_controller');
 
 
 const router = express.Router();
 const err = '';
-router.get('/', (req, res) => res.render('home', { err }));
+router.get('/', homeController.showFeatured);
 router.use('/search', require('./search'));
 router.use('/beers', require('./beers'));
 router.use('/users', require('./users'));

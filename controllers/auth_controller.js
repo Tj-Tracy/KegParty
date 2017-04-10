@@ -28,7 +28,7 @@ const Auth = {
         if (loginError) {
           return res.render('login', { err: loginError });
         }
-        return res.redirect(`/users/${user.username}`);
+        return res.redirect('/');
       });
     })(req, res, next);
   },
