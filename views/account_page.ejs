@@ -52,7 +52,7 @@
               <div class=" flex-container-column review">
                 <h4><%= item.title %> | Rating: <%= item.rating %></h4>
                 <p><%= item.body %></p>
-                <button class="btn"><a class="btn" style="width:100%;display:none;" href="/beers/<%= item.beerid %>">Go to this review</a></button>
+                <a class="btn" style="text-align:center;" href="/beers/<%= item.beerid %>">Go to this review</a>
                 <button class=" btn delete deleteReview" id="<%= item._id %>">Delete this review</button>
               </div>
             <% }); %>
