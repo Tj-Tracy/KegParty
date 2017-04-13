@@ -272,3 +272,8 @@ p {
 .no-margin {
     margin: 5px;
 }
+
+.error-msg {
+    color: indianred;
+    font-size: 15px !important;
+}

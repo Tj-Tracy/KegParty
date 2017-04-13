@@ -1,11 +1,61 @@
 <html>
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>KegParty: Account</title>
-</head>
-<body>
-    <h1>Welcome to User <%= user %>'s Profile</h1>
-</body>
+  </head>
+  <body>
+    <div class="site-header">
+      <a href="/"><h1>Keg Party</h1></a>
+      <div class="nav">
+        <ul>
+          <li class="home"><a href="/">Home</a></li>
+          <li><a href="/search">Search</a></li>
+          <li><a class="active" href="/users/account">Account</a></li>
+        </ul>
+      </div>
+    </div>
+    <br>
+    <div class="wrapper">
+      <div class="flex-container-column account-header">
+        <div class="flex-item">
+          <h2><%= user.username %></h2>
+        </div>
+        <div class="flex-item" style="font-size:12px;text-align:center;">
+          <a class="btn" href="/logout">Sign out</a>
+        </div>
+      </div>
+      <div class="flex-container-column">
+        <div class="flex-item">
+        <h3><%=user.username%>'s Favorite Beers:</h3>
+        </div>
+          <ul class="favorites-columns">
+            <% for(let i=0; i < favorites.length; i++){ %>
+              <li class="flex-item">
+                <a href="/beers/<%= favorites[i].beerID %>"><%= favorites[i].beerName %></a>
+              </li>
+            <% } %>
+          </ul>
+      </div>
+      <div class="flex-container-column">
+      <div><h3><%=user.username%>'s Reviews</h3> </div>
+          <div class="review">
+          <% if (reviews.length < 1) { %>
+          <h3 style="text-align:center;">No reviews yet. Get out there and write some!</h3>
+          <% } %>
+          </div>
+          
+          <% reviews.forEach((item) => { %>
+            <div class=" flex-container-column review">
+              <h4><%= item.title %> | Rating: <%= item.rating %></h4>
+              <p><%= item.body %></p>
+              <a class="btn" style="text-align:center;" href="/beers/<%= item.beerid %>">Go to this review</a>
+              <button class=" btn delete deleteReview" id="<%= item._id %>">Delete this review</button>
+            </div>
+          <% }); %>
+          </div>
+      </div>
+    </div>
+  </body>
 </html>

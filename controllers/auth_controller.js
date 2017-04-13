@@ -4,7 +4,7 @@ const User = require('../models/User');
 const Auth = {
   signup: (req, res) => {
     const newUser = new User({ username: req.body.username });
-    User.register(newUser, req.body.password, (err, user) => {
+    User.register(newUser, req.body.password, (err) => {
       return Passport.authenticate('local', (authError, authUser) => {
         if (authError) {
           return res.render('signup', { err: err.message });
@@ -20,13 +20,13 @@ const Auth = {
   loginUser: (req, res, next) => {
     Passport.authenticate('local', (err, user) => {
       if (err) {
-        return res.render('login', { err });
+        return res.render('home', { err: 'invalid login information' });
       } else if (!user) {
-        return res.render('login', { err });
+        return res.render('home', { err: 'invalid login information' });
       }
       return req.login(user, (loginError) => {
         if (loginError) {
-          return res.render('login', { err: loginError });
+          return res.render('home', { err: loginError });
         }
         return res.redirect('/');
       });

@@ -13,13 +13,15 @@ const userMethods = {
       const reviews = await Review.find({ userid: `${req.user.username}` });
       return res.render('account_page', { user, favorites: favs, reviews });
     }
-    const user = req.params.userid;
     // if the user exists in the database take them to your page
-    User.count({ username: user }, (err, count) => {
+    User.count({ username: req.params.userid }, async (err, count) => {
       if (count === 0) {
         return res.render('404');
       }
-      return res.render('profile', { user });
+      const user = await User.find({ username: `${req.params.userid}` });
+      console.log(user);
+      const reviews = await Review.find({ userid: `${user.username}` });
+      return res.render('profile', { user, reviews, favorites: user.favorites });
     });
   },
 
