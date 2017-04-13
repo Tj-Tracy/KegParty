@@ -25,7 +25,7 @@ const userMethods = {
       }
       let user;
       try {
-        user = await User.find({ username: `${req.params.userid}` });
+        user = await User.findOne({ username: `${req.params.userid}` });
       } catch (error) {
         console.log(error);
         return res.render('404');
