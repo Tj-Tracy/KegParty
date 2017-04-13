@@ -8,9 +8,14 @@ const userMethods = {
     // if the user is authenticated, bring them to thier account page
     if (req.isAuthenticated() && req.user.username === req.params.userid) {
       const user = req.user;
-      // const favs = await Favorite.find({ _user: req.user._id });
       const favs = user.favorites;
-      const reviews = await Review.find({ userid: `${req.user.username}` });
+      let reviews;
+      try {
+        reviews = await Review.find({ userid: `${req.user.username}` });
+      } catch (error) {
+        console.log(error);
+        return res.render('404');
+      }
       return res.render('account_page', { user, favorites: favs, reviews });
     }
     // if the user exists in the database take them to your page
@@ -18,9 +23,20 @@ const userMethods = {
       if (count === 0) {
         return res.render('404');
       }
-      const user = await User.find({ username: `${req.params.userid}` });
-      console.log(user);
-      const reviews = await Review.find({ userid: `${user.username}` });
+      let user;
+      try {
+        user = await User.find({ username: `${req.params.userid}` });
+      } catch (error) {
+        console.log(error);
+        return res.render('404');
+      }
+      let reviews;
+      try {
+        reviews = await Review.find({ userid: `${user.username}` });
+      } catch (error) {
+        console.log(error);
+        return res.render('404');
+      }
       return res.render('profile', { user, reviews, favorites: user.favorites });
     });
   },
@@ -52,10 +68,14 @@ const userMethods = {
   },
 
   deleteReview: async (req, res) => {
-    await Review.find({ _id: `${req.body.reviewId}` }).remove();
+    try {
+      await Review.find({ _id: `${req.body.reviewId}` }).remove();
+    } catch (error) {
+      console.log(error);
+      return res.render('404');
+    }
     return res.redirect('back');
   },
-
 };
 
 module.exports = userMethods;
