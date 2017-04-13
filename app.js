@@ -4,8 +4,9 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
 const Passport = require('passport');
-
 const logger = require('morgan');
+const favicon = require('serve-favicon');
+const path = require('path');
 
 const app = express();
 require('dotenv').config();
@@ -18,6 +19,7 @@ mongoose.connect(DB_URL);
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+app.use(favicon(path.join(__dirname, 'public', 'img', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(cookieParser());
 app.use(bodyParser.json());

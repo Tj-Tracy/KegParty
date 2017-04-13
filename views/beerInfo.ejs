@@ -70,13 +70,13 @@
           <h2>Write a Review</h2>
         </div>
           <div class="flex-item">
-            Title:<br/> <input type="text" name="title" class="review-modal-input" /><br/>
+            Title:<br/> <input type="text" name="title" class="review-modal-input" pattern=".{3,}" title="please enter 3 or more characters" required/><br/>
           </div>
           <div class="flex-item">
-            Body: <textarea name="textBody" id="textBody" cols="30" rows="10" class="review-modal-input"></textarea>
+            Body: <textarea name="textBody" id="textBody" cols="30" rows="10" class="review-modal-input" pattern=".{10,}" title="please enter 10 or more characters" required></textarea>
           </div>
           <div class="flex-item">
-            Rating: <input type="number" name="rating" min="0" max="5" class="review-modal-input" />
+            Rating: <input type="number" name="rating" min="0" max="5" class="review-modal-input" required />
           </div>
             <input type="hidden" name="beerID" value="<%= beer.data.id %>" />
           <div class="flex-item">
