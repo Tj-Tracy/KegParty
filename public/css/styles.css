@@ -8,54 +8,86 @@ h1 {
     text-align: center;
     color: sandybrown;
 }
-
-#canvas {
-    height: 100%;
-    width: 100%;
-    background-color: #FFFCED;
-}
+/*
 #login {
     position: absolute;
     top: 43%;
     right: 46%;
     
-}
+} 
 #search {
     position: absolute;
     top: 43%;
     right: 46%;
-
-
-.center {
-    margin: 0 auto;
-    width: 50%;
-}
-
-.fourohfour {
-    color: sandybrown;
-    text-align: center;
-}
-
-.fourohfour p {
-    color: black;
-}
-
-.fake-nav {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    padding-bottom: 5px;
-}
-
-.login-nav {
-    padding: 10px;
-}
-
-.fake-nav-vert {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    flex-direction: column;
-
     
+}*/
+#output {
+    top: 50vh;
+    left: 30vh;
+    position: absolute;
 }
+body {
+    background-color: #FFF8E1;
+}
+
+.box {
+    min-height: 10vh;
+    width: 30vh;
+    background-color: sandybrown;
+    border-style: solid;
+    border-width: 1.5vh;
+    border-color: #444; 
+    text-align: center;    
+    position: absolute;
+}
+#b1 {
+    bottom: 10vh;
+    left: 30vh;
+    width: 30vh;
+    text-align: center;
+    vertical-align: middle; 
+}
+#b2 {
+    bottom: 10vh;
+    left: 75vh;
+}
+#b3{
+    bottom: 10vh;
+    left: 120vh;
+}
+#b4{
+    bottom: 30vh;
+    left: 30vh;
+}
+#b5{
+    bottom: 30vh;
+    left: 75vh;
+}
+#b6{
+    bottom: 30vh;
+    left: 120vh;
+}
+#login {
+    width: 10vh;
+    left: 12vh;
+    top: 10vh;
+    position: absolute;
+}
+#help{
+    width: 10%;
+    left: 12vh;
+    top: 10vh;
+    position: absolute;
+}
+#search{
+    width: 10%;
+    left: 12vh;
+    top: 20vh;
+    position: absolute;
+
+}
+.cap { transition: all .2s ease-in; }
+/*.cap:hover { transform: scale(1.1); }
+
+.cap:active{ transform: scale(2.8) rotate(14deg);
+} */
