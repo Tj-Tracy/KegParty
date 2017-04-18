@@ -5,18 +5,7 @@
     <link rel="stylesheet" href="css/nav-bar.css">
 	</head>
 <body>
-  <div class="site-header">
-    <a href="/"> <h1>Keg Party</h1> </a>
-    <div class="nav">
-      <ul>
-        <li class="home"><a class="active" href="/">Home</a></li>
-        <li><a href="/search">Search</a></li>
-        <li><a href="/users/account">Account</a></li>
-      </ul>
-    </div>
-  </div>
-  <br>
-
+  <% include ./partials/nav %>
   <div class="flex-container-column login">
     <h2>Login</h2>
       <h2 class="error-msg"><%= err %></h2>

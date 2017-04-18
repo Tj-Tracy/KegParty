@@ -6,15 +6,7 @@
     <link rel="stylesheet" href="css/nav-bar.css">
 </head>
 <body>
-  <div class="site-header">
-    <a href="/"> <h1>Keg Party</h1> </a>
-    <div class="nav">
-      <ul>
-        <li class="home"><a href="/">Home</a></li>
-        <li><a class="active" href="/search">Search</a></li>
-        <li><a href="/users/account">Account</a></li>
-      </ul>
-    </div>
+  <% include ./partials/nav %>
   </div>
     <div class="flex-container">
       <div class="flex-item search-container">
@@ -31,9 +23,9 @@
       <% if(beerList !== undefined){ %>
           <% for(let i=0; i < beerList.length; i++){ %>
             <% if(beerList[i].style != undefined){ %>
-              <div class = "flex-item"><a href='/beers/<%= beerList[i].id %>'><%= beerList[i].name %> | <%= beerList[i].style.name %></a>
+              <div class = "flex-item search-item"><a href='/beers/<%= beerList[i].id %>'><%= beerList[i].name %> | <%= beerList[i].style.name %></a>
             <% } else { %>
-              <div class = "flex-item"><a href='/beers/<%= beerList[i].id %>'><%= beerList[i].name %>%></a>
+              <div class = "flex-item search-item"><a href='/beers/<%= beerList[i].id %>'><%= beerList[i].name %>%></a>
             <% } %>
             <% if(beerList[i].description != undefined){ %>
               <p><%= beerList[i].description %></p></div>

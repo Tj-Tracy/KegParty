@@ -6,16 +6,7 @@
     <link rel="stylesheet" href="css/nav-bar.css">
 </head>
 <body>
-  <div class="site-header">
-    <a href="/"> <h1>Keg Party</h1> </a>
-    <div class="nav">
-      <ul>
-        <li class="home"><a href="/">Home</a></li>
-        <li><a class="active" href="/search">Search</a></li>
-        <li><a href="/users/account">Account</a></li>
-      </ul>
-    </div>
-  </div>
+ <% include ./partials/nav %>
     <div class="flex-container">
       <div class="flex-item search-container"> 
         <form method="get" action="/search" >
