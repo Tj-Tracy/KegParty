@@ -153,15 +153,18 @@ body {
     padding: 10px;
 }
 
-#output a {
-    font-size: 30px !important;
-}
 
-.box-item:hover {
+
+
+.box-item:hover, .box-item:active {
     background-color: sandybrown;
     color: white;
     transition: .2s;
     cursor: pointer;
+}
+
+#output a {
+    font-size: 30px !important;
 }
 
 .fourohfour {

@@ -6,7 +6,7 @@ const homeController = require('../controllers/home_controller');
 const router = express.Router();
 const err = '';
 router.get('/', homeController.showFeatured);
-router.get('/help', (req,res) => res.render('help'));
+router.get('/help', (req, res) => res.render('help'));
 router.use('/search', require('./search'));
 router.use('/beers', require('./beers'));
 router.use('/users', require('./users'));
