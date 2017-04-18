@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Lora|Montserrat');
+
+:root {
+    --siteBackground: #FFF8E1;
+    --headerTextColor: sandybrown;
+    --linkColor: black;
+    --logoColor: white;
+    --basicFontColor: black;
+    --flexContainerColor: white;
+    --searchBorderColor: sandybrown;
+    --searchButtonColor: sandybrown;
+    --titleFont: 'Montserrat', sans-serif;
+    --basicTextFont: 'Lora', serif;
+
+
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+    
+}
+
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.review-modal-input {
+    width: 100%;
+    font-size: 1.2em;
+    font-family: var(--basicTextFont);
+}

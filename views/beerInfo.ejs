@@ -1,20 +1,130 @@
 <!doctype html>
 <head>
     <title>KegParty - <%= beer.data.name %></title>
+    <link href="/css/styles.css" rel="stylesheet" ></link>
+    <link href="/css/modal.css" rel="stylesheet" ></link>
+    <link rel="stylesheet" href="/css/nav-bar.css">
 </head>
 <body>
-    <h3><%= beer.data.name %></h3>
-    <% if(loggedInUser) {%>
-        <form action="/users/addToFavorites" method="post" target="uploader_iframe"> 
-            <input type="hidden" name="beerName" value="<%= beer.data.name %>" />
+  <div class="site-header">
+    <a href="/"> <h1>Keg Party</h1> </a>
+    <div class="nav">
+      <ul>
+        <li class="home"><a href="/">Home</a></li>
+        <li><a href="/search">Search</a></li>
+        <li><a href="/users/account">Account</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrapper">
+      <div class="flex-container-column beer-title">
+        <h2><%= beer.data.name %></h2>
+        <h3><%= brewery.data[0].name %></h3>
+      </div>
+      <div class="flex-container">
+        <% if (typeof beer.data.labels !== 'undefined') { %>
+          <img class="beer-image flex-item" src="<%= beer.data.labels.large %>" />
+        <% } else { %>
+          <img src="/img/Placeholder.png" />
+        <% } %>
+        <div class="flex-item">
+          <h3> Description </h3>
+          <p><%= beer.data.description %></p>
+          <p>Style: <%= beer.data.style.name %> </p>
+          <p>ABV: <%= beer.data.style.abvMin %>%</p>
+          <% if (loggedInUser) { %>
+            <% if (isFav === false) { %>
+              <div id="favoritesDiv">
+                <button class="btn" id="addFavorite">Add to favorites</button>
+                <button class="btn" id="reviewButton" onclick="showReviewModal()" >Write a Review</button>
+              </div>
+            <% } %>
+            <% if (isFav === true) { %>
+            <div id="favoritesDiv">
+              <button class="btn delete" id="removeFavorite">Remove favorite</button>
+              <button class="btn" id="reviewButton" onclick="showReviewModal()" >Write a Review</button>              
+            </div>
+            <% } %>
+          <% } %>
+        </div>
+      </div>
+        <div class ="flex-container-column">
+          <div> <h3> Reviews </h3> </div>
+          <% if (reviews.length < 1) { %>
+          <h3 style="text-align:center;">No reviews yet. Be the first to review this beer!</h3>
+          <% } %>
+          <div class="review flex-container-column">
+          <% reviews.forEach((item) => { %>
+            <h4><%= item.title %> | Rating: <%= item.rating %></h4>
+            <h5> User: <%= item.userid %></h5>
+            <p><%= item.body %></p>
+          <% }); %>
+          </div>
+        </div>
+
+
+      <div id="reviewModal" class="modal">
+      <div class="modal-content">
+        <form action="/users/addReview" method="post">
+        <div class="flex-item">
+          <h2>Write a Review</h2>
+        </div>
+          <div class="flex-item">
+            Title:<br/> <input type="text" name="title" class="review-modal-input" pattern=".{3,}" title="please enter 3 or more characters" required/><br/>
+          </div>
+          <div class="flex-item">
+            Body: <textarea name="textBody" id="textBody" cols="30" rows="10" class="review-modal-input" pattern=".{10,}" title="please enter 10 or more characters" required></textarea>
+          </div>
+          <div class="flex-item">
+            Rating: <input type="number" name="rating" min="0" max="5" class="review-modal-input" required />
+          </div>
             <input type="hidden" name="beerID" value="<%= beer.data.id %>" />
-            <input type="submit" value="Add To Favorites" />
-        </form>    
-        <iframe id="uploader_iframe" name="uploader_iframe" style="display: none;"></iframe>
-    <% } %>
-    <p>Style: <%= beer.data.style.name %></p>
-    <p><%= beer.data.description %></p>
-    <p>abv: <%= beer.data.style.abvMin %></p>
-
-
+          <div class="flex-item">
+            <input type="submit" class="btn" name="submit" />
+          </div>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
+  <script type="text/javascript" src="/js/jquery-3.1.1.min.js"> </script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="text/javascript" src="/js/helpers.js"></script>
+  <script>
+    const beerName = "<%= beer.data.name %>"
+    const beerID = "<%= beer.data.id %>"
+    $(document).on('click', '#addFavorite', (event) => {
+      $('#addFavorite').prop('disabled', true);
+      axios.post('/users/addToFavorites', {
+        beerName: beerName,
+        beerID: beerID
+      })
+      .then((response) => {
+        $('#favoritesDiv').html(
+          `<button class="btn delete" id="removeFavorite">Remove favorite</button>
+           <button class="btn" id="reviewButton" onclick="showReviewModal()" >Write a Review</button>`);
+           console.log('added');
+      })
+      .catch((error) => {
+        console.log(error);
+      }); 
+    });
+    
+    $(document).on('click', '#removeFavorite',  (event) => {
+      $('#removeFavorite').prop('disabled', true);
+      axios.post('/users/removeFromFavorites', {
+        beerName: beerName,
+        beerID: beerID
+      })
+      .then((response) => {
+        $('#favoritesDiv').html(
+          `<button class="btn" id="addFavorite">Add to favorites</button>
+           <button class="btn" id="reviewButton" onclick="showReviewModal()" >Write a Review</button>`);
+           console.log('removed');
+      })
+      .catch((error) => {
+        console.log(error);
+      }); 
+    });
+  </script>
 </body>
