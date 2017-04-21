@@ -24,14 +24,17 @@ router.get('/logout', (req, res) => {
 });
 
 
-router.get('/random', async (req, res) => {
+router.get('/api/random', async (req, res) => {
   let response;
   try {
     response = await axios.get(`http://api.brewerydb.com/v2/beer/random?key=${API_KEY}`);
   } catch (error) {
     res.send(error);
   }
-  return res.send(response.data.data);
+  const beer = response.data.data;
+  beer.link = `https://kegparty.herokuapp.com/beers/${beer.id}`;
+  console.log(beer.link);
+  return res.send(beer);
 });
 
 module.exports = router;
