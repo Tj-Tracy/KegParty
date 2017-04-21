@@ -156,7 +156,7 @@ body {
 
 
 
-.box-item:hover, .box-item:active {
+.box-item:hover{
     background-color: sandybrown;
     color: white;
     transition: .2s;

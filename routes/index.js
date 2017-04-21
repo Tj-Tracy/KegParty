@@ -1,6 +1,8 @@
 const express = require('express');
 const authController = require('../controllers/auth_controller');
 const homeController = require('../controllers/home_controller');
+const axios = require('axios');
+const {API_KEY } = process.env;
 
 
 const router = express.Router();
@@ -21,5 +23,15 @@ router.get('/logout', (req, res) => {
   return res.redirect('/');
 });
 
+
+router.get('/random', async (req, res) => {
+  let response;
+  try {
+    response = await axios.get(`http://api.brewerydb.com/v2/beer/random?key=${API_KEY}`);
+  } catch (error) {
+    res.send(error);
+  }
+  return res.send(response.data.data);
+});
 
 module.exports = router;

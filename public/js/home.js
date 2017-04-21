@@ -18,4 +18,3 @@ function b5(){
 function b6(){
   document.getElementById("output").innerHTML="Watching Sports? We Recommend: <a href=\"/beers/mGMxmW/\">Molsen Canadian</a> ";
 }
-
